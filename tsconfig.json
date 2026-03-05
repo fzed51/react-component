@@ -7,6 +7,8 @@
     "declaration": false,
     "sourceMap": true,
     "rootDir": "./src",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
