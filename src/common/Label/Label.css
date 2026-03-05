@@ -1,0 +1,12 @@
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.form-label__required {
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+}

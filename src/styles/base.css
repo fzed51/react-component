@@ -1,0 +1,400 @@
+/* ============================================================
+   BASE CSS — Variables de design + Reset + Styles HTML de base
+   ============================================================ */
+
+/* ----------------------
+   Variables de couleur
+   ---------------------- */
+:root {
+  /* ── Couleurs de base (seules valeurs codées en dur) ─────── */
+  --color-primary: #0a66c2;
+  --color-secondary: #057642;
+  --color-warning: #b36a00;
+  --color-error: #cc1016;
+
+  --color-text-primary: #1c1c1c;
+  --color-text-inverse: #ffffff;
+
+  --color-bg-surface: #ffffff;
+  --color-bg-app: #f3f2ef;
+
+  /* ── Dérivées de primary ──────────────────────────────────── */
+  --color-primary-hover: color-mix(in oklch, var(--color-primary) 60%, black);
+  --color-primary-light: color-mix(in oklch, var(--color-primary) 18%, white);
+
+  /* ── Dérivées de secondary ───────────────────────────────── */
+  --color-secondary-hover: color-mix(in oklch, var(--color-secondary) 60%, black);
+  --color-secondary-light: color-mix(in oklch, var(--color-secondary) 18%, white);
+
+  /* ── Dérivées de warning ─────────────────────────────────── */
+  --color-warning-light: color-mix(in oklch, var(--color-warning) 18%, white);
+
+  /* ── Dérivées de error ───────────────────────────────────── */
+  --color-error-light: color-mix(in oklch, var(--color-error) 14%, white);
+
+  /* ── Couleurs de statut (alias sémantiques) ──────────────── */
+  --color-success: var(--color-secondary);
+  --color-success-light: var(--color-secondary-light);
+  --color-info: var(--color-primary);
+  --color-info-light: var(--color-primary-light);
+
+  /* ── Couleurs de texte ───────────────────────────────────── */
+  --color-text-secondary: color-mix(in oklch, var(--color-text-primary) 52%, white);
+  --color-text-tertiary: color-mix(in oklch, var(--color-text-primary) 38%, white);
+  --color-text-disabled: color-mix(in oklch, var(--color-text-primary) 27%, white);
+  --color-text-link: var(--color-primary);
+
+  /* ── Couleurs de surface / fond ──────────────────────────── */
+  --color-bg-subtle: color-mix(in oklch, var(--color-bg-surface) 95%, var(--color-text-primary));
+  --color-bg-muted: color-mix(in oklch, var(--color-bg-surface) 88%, var(--color-text-primary));
+  --color-bg-dark: var(--color-text-primary);
+
+  /* ── Bordures ─────────────────────────────────────────────── */
+  --color-border: color-mix(in oklch, var(--color-bg-surface) 78%, var(--color-text-primary));
+  --color-border-strong: var(--color-text-disabled);
+  --color-border-focus: var(--color-primary);
+
+  /* Ombres */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.14);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+  /* ----------------------
+     Variables de taille
+     ---------------------- */
+
+  /* Typographie */
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+  --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Échelle typographique — modifier ces deux valeurs suffit */
+  --font-size-base: 0.9375rem; /* 15px — taille de référence (md) */
+  --font-scale: 1.25; /* ratio Major Third entre chaque palier */
+
+  /* Paliers calculés à partir de la base × l'échelle */
+  --font-size-md: var(--font-size-base);
+  --font-size-sm: calc(var(--font-size-md) / var(--font-scale)); /* ≈ 12px */
+  --font-size-xs: calc(var(--font-size-sm) / var(--font-scale)); /* ≈ 9.6px */
+  --font-size-lg: calc(var(--font-size-md) * var(--font-scale)); /* ≈ 18.75px */
+  --font-size-xl: calc(var(--font-size-lg) * var(--font-scale)); /* ≈ 23.4px */
+  --font-size-2xl: calc(var(--font-size-xl) * var(--font-scale)); /* ≈ 29.3px */
+  --font-size-3xl: calc(var(--font-size-2xl) * var(--font-scale)); /* ≈ 36.6px */
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.8;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.04em;
+
+  /* Unité d'espacement — 1 u = font-size-base / 3.75 ≈ 4px */
+  --space-unit: calc(var(--font-size-base) / 3.75);
+
+  /* Espacement — multiples de --space-unit */
+  --space-1: var(--space-unit); /* ≈  4px */
+  --space-2: calc(var(--space-unit) * 2); /* ≈  8px */
+  --space-3: calc(var(--space-unit) * 3); /* ≈ 12px */
+  --space-4: calc(var(--space-unit) * 4); /* ≈ 16px */
+  --space-5: calc(var(--space-unit) * 5); /* ≈ 20px */
+  --space-6: calc(var(--space-unit) * 6); /* ≈ 24px */
+  --space-8: calc(var(--space-unit) * 8); /* ≈ 32px */
+  --space-10: calc(var(--space-unit) * 10); /* ≈ 40px */
+  --space-12: calc(var(--space-unit) * 12); /* ≈ 48px */
+  --space-16: calc(var(--space-unit) * 16); /* ≈ 64px */
+  --space-20: calc(var(--space-unit) * 20); /* ≈ 80px */
+
+  /* Bordures arrondies — multiples de --space-unit */
+  --radius-none: 0;
+  --radius-sm: var(--space-unit); /* ≈  4px */
+  --radius-md: calc(var(--space-unit) * 2); /* ≈  8px */
+  --radius-lg: calc(var(--space-unit) * 3); /* ≈ 12px */
+  --radius-xl: calc(var(--space-unit) * 4); /* ≈ 16px */
+  --radius-full: 9999px;
+
+  /* Épaisseur de bordure */
+  --border-width: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+
+  /* Tailles d'icônes — multiples de --space-unit */
+  --size-icon-sm: calc(var(--space-unit) * 4); /* ≈ 16px */
+  --size-icon-md: calc(var(--space-unit) * 5); /* ≈ 20px */
+  --size-icon-lg: calc(var(--space-unit) * 6); /* ≈ 24px */
+  --size-icon-xl: calc(var(--space-unit) * 8); /* ≈ 32px */
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-overlay: 100;
+  --z-modal: 1000;
+  --z-toast: 2000;
+}
+
+/* ----------------------
+   Reset & Normalize
+   ---------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ----------------------
+   Styles HTML de base
+   ---------------------- */
+
+/* Typographie */
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+h5 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+h6 {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+p {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+small {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-semibold);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+a {
+  color: var(--color-text-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Listes */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Formulaires */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input,
+textarea,
+select {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  border-color: var(--color-border);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  white-space: nowrap;
+}
+
+button:focus-visible {
+  outline: var(--border-width-medium) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Images & media */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Séparateur */
+hr {
+  border: none;
+  border-top: var(--border-width) solid var(--color-border);
+  margin: var(--space-6) 0;
+}
+
+/* Code */
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+}
+
+code {
+  background-color: var(--color-bg-muted);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+}
+
+pre {
+  background-color: var(--color-bg-muted);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  line-height: var(--line-height-loose);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+th {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-subtle);
+}

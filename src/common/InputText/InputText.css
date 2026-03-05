@@ -1,0 +1,57 @@
+.input-text {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  appearance: none;
+}
+
+.input-text:hover:not(:disabled):not(:focus) {
+  border-color: var(--color-border-strong);
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.input-text:disabled {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.input-text--sm {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-sm);
+}
+.input-text--md {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-md);
+}
+.input-text--lg {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-lg);
+}
+
+.input-text--error {
+  border-color: var(--color-error);
+}
+.input-text--error:focus {
+  box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
+.input-text--success {
+  border-color: var(--color-success);
+}
+.input-text--success:focus {
+  box-shadow: 0 0 0 3px var(--color-success-light);
+}

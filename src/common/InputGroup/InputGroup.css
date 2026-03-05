@@ -1,0 +1,37 @@
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-group .input-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-group__prefix,
+.input-group__suffix {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+  font-size: var(--font-size-md);
+}
+
+.input-group__prefix {
+  left: var(--space-3);
+}
+
+.input-group__suffix {
+  right: var(--space-3);
+}
+
+.input-group--has-prefix .input-text {
+  padding-left: calc(var(--space-3) * 2 + var(--size-icon-md));
+}
+
+.input-group--has-suffix .input-text {
+  padding-right: calc(var(--space-3) * 2 + var(--size-icon-md));
+}

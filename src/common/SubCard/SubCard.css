@@ -1,0 +1,18 @@
+.sub-card {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  width: 100%;
+}
+
+.sub-card--default {
+  background-color: var(--color-bg-subtle);
+}
+
+.sub-card--subtle {
+  background-color: var(--color-bg-muted);
+}
+
+.sub-card--muted {
+  background-color: var(--color-bg-app);
+}

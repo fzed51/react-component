@@ -1,0 +1,27 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: 100%;
+}
+
+.form-group__error {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.form-group__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.form-group--error .input-text,
+.form-group--error .selector {
+  border-color: var(--color-error);
+}
+
+.form-group--error .input-text:focus,
+.form-group--error .selector:focus {
+  box-shadow: 0 0 0 3px var(--color-error-light);
+}
