@@ -96,6 +96,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fzed51/react-component@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@fzed51/react-component@workspace:."
+  dependencies:
+    "@biomejs/biome": "npm:2.4.5"
+    "@types/react": "npm:^19.2.14"
+    "@types/react-dom": "npm:^19.2.3"
+    clsx: "npm:^2.1.1"
+    react: "npm:^19.2.4"
+    react-dom: "npm:^19.2.4"
+    typescript: "npm:^5.9.3"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  languageName: unknown
+  linkType: soft
+
 "@types/react-dom@npm:^19.2.3":
   version: 19.2.3
   resolution: "@types/react-dom@npm:19.2.3"
@@ -114,28 +131,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
+  languageName: node
+  linkType: hard
+
 "csstype@npm:^3.2.2":
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
-
-"react-component@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-component@workspace:."
-  dependencies:
-    "@biomejs/biome": "npm:2.4.5"
-    "@types/react": "npm:^19.2.14"
-    "@types/react-dom": "npm:^19.2.3"
-    react: "npm:^19.2.4"
-    react-dom: "npm:^19.2.4"
-    typescript: "npm:^5.9.3"
-  peerDependencies:
-    react: ">=18"
-    react-dom: ">=18"
-  languageName: unknown
-  linkType: soft
 
 "react-dom@npm:^19.2.4":
   version: 19.2.4
