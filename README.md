@@ -438,7 +438,7 @@ Texte courant avec variantes de couleur, taille et balise HTML.
 
 ```tsx
 <Text variant="secondary" size="sm">Texte discret</Text>
-<Text as="span" variant="error">Champ invalide</Text>
+<Text inline variant="error">Champ invalide</Text>
 ```
 
 | Prop        | Type                                                                                       | Défaut      | Description                |
@@ -446,7 +446,8 @@ Texte courant avec variantes de couleur, taille et balise HTML.
 | `children`  | `ReactNode`                                                                                | —           | Contenu                    |
 | `variant`   | `"primary" \| "secondary" \| "tertiary" \| "inverse" \| "error" \| "success" \| "warning"` | `"primary"` | Couleur                    |
 | `size`      | `"xs" \| "sm" \| "md" \| "lg"`                                                             | `"md"`      | Taille                     |
-| `as`        | `"p" \| "span" \| "div" \| "li"`                                                           | `"p"`       | Balise HTML rendue         |
+| `box`       | `boolean`                                                                                  | `false`     | Rendre comme `<div>`       |
+| `inline`    | `boolean`                                                                                  | `false`     | Rendre comme `<span>`      |
 | `className` | `string`                                                                                   | `""`        | Classes CSS additionnelles |
 | `...props`  | `HTMLAttributes<HTMLElement>`                                                              | —           | Attributs HTML natifs      |
 
