@@ -1,22 +1,22 @@
-import clsx from 'clsx';
-import './Text.css';
-import type { TextProps, TextSize, TextVariant } from './types';
+import clsx from "clsx";
+import "./Text.css";
+import type { TextProps, TextSize, TextVariant } from "./types";
 
 const variantClass: Record<TextVariant, string> = {
-  primary: 'text-primary',
-  secondary: 'text-secondary',
-  tertiary: 'text-tertiary',
-  inverse: 'text-inverse',
-  error: 'text-error',
-  success: 'text-success',
-  warning: 'text-warning',
+  primary: "text-primary",
+  secondary: "text-secondary",
+  tertiary: "text-tertiary",
+  inverse: "text-inverse",
+  error: "text-error",
+  success: "text-success",
+  warning: "text-warning",
 };
 
 const sizeClass: Record<TextSize, string> = {
-  xs: 'text-xs',
-  sm: 'text-sm',
-  md: 'text-md',
-  lg: 'text-lg',
+  xs: "text-xs",
+  sm: "text-sm",
+  md: "text-md",
+  lg: "text-lg",
 };
 
 /**
@@ -24,19 +24,23 @@ const sizeClass: Record<TextSize, string> = {
  */
 export function Text({
   children,
-  variant = 'primary',
-  size = 'md',
-  as: Tag = 'p',
-  className = '',
+  variant = "primary",
+  size = "md",
+  box = false,
+  inline = false,
+  className = "",
   ...props
 }: TextProps) {
-  const classes = clsx('text-component', variantClass[variant], sizeClass[size], className);
+  if ("as" in props) {
+    throw new Error('The "as" prop is not allowed. Use "box" or "inline" instead.');
+  }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const El = Tag as any;
+  const Tag = box ? "div" : inline ? "span" : "p";
+  const classes = clsx("text-component", variantClass[variant], sizeClass[size], className);
+
   return (
-    <El className={classes} {...props}>
+    <Tag className={classes} {...props}>
       {children}
-    </El>
+    </Tag>
   );
 }

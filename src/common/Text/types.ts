@@ -1,15 +1,14 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
 export type TextVariant =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'inverse'
-  | 'error'
-  | 'success'
-  | 'warning';
-export type TextSize = 'xs' | 'sm' | 'md' | 'lg';
-export type TextAs = 'p' | 'span' | 'div' | 'li';
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "inverse"
+  | "error"
+  | "success"
+  | "warning";
+export type TextSize = "xs" | "sm" | "md" | "lg";
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -17,6 +16,8 @@ export interface TextProps extends HTMLAttributes<HTMLElement> {
   variant?: TextVariant;
   /** Taille du texte */
   size?: TextSize;
-  /** Élément HTML à utiliser */
-  as?: TextAs;
+  /** Rendre comme un élément de bloc (div) */
+  box?: boolean;
+  /** Rendre comme un élément en ligne (span) */
+  inline?: boolean;
 }
