@@ -1,6 +1,6 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from "react";
 
-export interface InputGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, 'prefix'> {
+export interface InputGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "prefix"> {
   children: ReactNode;
   /** Élément affiché avant l'input (icône, texte…) */
   prefix?: ReactNode;

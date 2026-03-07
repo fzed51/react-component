@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import './InputGroup.css';
-import type { InputGroupProps } from './types';
+import clsx from "clsx";
+import "./InputGroup.css";
+import type { InputGroupProps } from "./types";
 
 /**
  * Groupe d'input avec préfixe et/ou suffixe visuels.
@@ -16,13 +16,13 @@ export function InputGroup({
   children,
   prefix,
   suffix,
-  className = '',
+  className = "",
   ...props
 }: InputGroupProps) {
   const classes = clsx(
-    'input-group',
-    prefix && 'input-group--has-prefix',
-    suffix && 'input-group--has-suffix',
+    "input-group",
+    prefix && "input-group--has-prefix",
+    suffix && "input-group--has-suffix",
     className,
   );
 

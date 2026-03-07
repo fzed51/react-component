@@ -21,13 +21,7 @@ export const InputTextField = forwardRef<HTMLInputElement, InputTextFieldProps>(
         <Label htmlFor={id} required={required}>
           {label}
         </Label>
-        <InputText
-          ref={ref}
-          id={id}
-          state={fieldState}
-          required={required}
-          {...props}
-        />
+        <InputText ref={ref} id={id} state={fieldState} required={required} {...props} />
       </FormGroup>
     );
   },

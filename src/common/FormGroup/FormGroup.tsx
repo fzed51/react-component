@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import './FormGroup.css';
-import type { FormGroupProps } from './types';
+import clsx from "clsx";
+import "./FormGroup.css";
+import type { FormGroupProps } from "./types";
 
 /**
  * Conteneur de champ de formulaire.
@@ -13,8 +13,8 @@ import type { FormGroupProps } from './types';
  *   <InputText id="email" type="email" placeholder="vous@exemple.com" />
  * </FormGroup>
  */
-export function FormGroup({ children, error, hint, className = '', ...props }: FormGroupProps) {
-  const classes = clsx('form-group', error && 'form-group--error', className);
+export function FormGroup({ children, error, hint, className = "", ...props }: FormGroupProps) {
+  const classes = clsx("form-group", error && "form-group--error", className);
 
   return (
     <div className={classes} {...props}>

@@ -1,18 +1,18 @@
-import clsx from 'clsx';
-import { forwardRef } from 'react';
-import './Selector.css';
-import type { SelectorProps, SelectorSize, SelectorState } from './types';
+import clsx from "clsx";
+import { forwardRef } from "react";
+import "./Selector.css";
+import type { SelectorProps, SelectorSize, SelectorState } from "./types";
 
 const sizeClass: Record<SelectorSize, string> = {
-  sm: 'selector--sm',
-  md: 'selector--md',
-  lg: 'selector--lg',
+  sm: "selector--sm",
+  md: "selector--md",
+  lg: "selector--lg",
 };
 
 const stateClass: Record<SelectorState, string> = {
-  default: '',
-  error: 'selector--error',
-  success: 'selector--success',
+  default: "",
+  error: "selector--error",
+  success: "selector--success",
 };
 
 /**
@@ -26,8 +26,8 @@ const stateClass: Record<SelectorState, string> = {
  * </Selector>
  */
 export const Selector = forwardRef<HTMLSelectElement, SelectorProps>(
-  ({ children, state = 'default', size = 'md', placeholder, className = '', ...props }, ref) => {
-    const classes = clsx('selector', sizeClass[size], stateClass[state], className);
+  ({ children, state = "default", size = "md", placeholder, className = "", ...props }, ref) => {
+    const classes = clsx("selector", sizeClass[size], stateClass[state], className);
 
     return (
       <div className="selector-wrapper">
@@ -45,4 +45,4 @@ export const Selector = forwardRef<HTMLSelectElement, SelectorProps>(
   },
 );
 
-Selector.displayName = 'Selector';
+Selector.displayName = "Selector";

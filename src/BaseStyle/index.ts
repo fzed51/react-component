@@ -1,1 +1,1 @@
-export { BaseStyle } from './BaseStyle';
+export { BaseStyle } from "./BaseStyle";
