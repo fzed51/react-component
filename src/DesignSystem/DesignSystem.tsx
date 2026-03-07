@@ -42,15 +42,12 @@ export function DesignSystem() {
             <Titre2>Titre 2 — h2</Titre2>
             <Titre3>Titre 3 — h3</Titre3>
             <Text>Texte courant (primary) — Lorem ipsum dolor sit amet.</Text>
-            <Text variant="secondary">
-              Texte secondaire — Ut enim ad minim veniam.
-            </Text>
+            <Text variant="secondary">Texte secondaire — Ut enim ad minim veniam.</Text>
             <Text variant="tertiary" size="sm">
               Texte tertiaire small — Duis aute irure dolor.
             </Text>
             <SubText>
-              Sous-texte / légende — utilisé pour complémenter un titre ou un
-              champ.
+              Sous-texte / légende — utilisé pour complémenter un titre ou un champ.
             </SubText>
             <SubText variant="error">Sous-texte d'erreur</SubText>
             <SubText variant="success">Sous-texte de succès</SubText>

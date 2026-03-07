@@ -23,13 +23,7 @@ export const SelectorField = forwardRef<HTMLSelectElement, SelectorFieldProps>(
         <Label htmlFor={id} required={required}>
           {label}
         </Label>
-        <Selector
-          ref={ref}
-          id={id}
-          state={fieldState}
-          required={required}
-          {...props}
-        />
+        <Selector ref={ref} id={id} state={fieldState} required={required} {...props} />
       </FormGroup>
     );
   },

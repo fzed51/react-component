@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import './Button.css';
-import type { ButtonProps, ButtonSize, ButtonVariant } from './types';
+import clsx from "clsx";
+import "./Button.css";
+import type { ButtonProps, ButtonSize, ButtonVariant } from "./types";
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary: 'btn--primary',
-  secondary: 'btn--secondary',
-  ghost: 'btn--ghost',
-  danger: 'btn--danger',
-  outline: 'btn--outline',
+  primary: "btn--primary",
+  secondary: "btn--secondary",
+  ghost: "btn--ghost",
+  danger: "btn--danger",
+  outline: "btn--outline",
 };
 
 const sizeClass: Record<ButtonSize, string> = {
-  sm: 'btn--sm',
-  md: 'btn--md',
-  lg: 'btn--lg',
+  sm: "btn--sm",
+  md: "btn--md",
+  lg: "btn--lg",
 };
 
 /**
@@ -21,20 +21,20 @@ const sizeClass: Record<ButtonSize, string> = {
  */
 export function Button({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   fullWidth = false,
   loading = false,
   disabled,
-  className = '',
+  className = "",
   ...props
 }: ButtonProps) {
   const classes = clsx(
-    'btn',
+    "btn",
     variantClass[variant],
     sizeClass[size],
-    fullWidth && 'btn--full-width',
-    loading && 'btn--loading',
+    fullWidth && "btn--full-width",
+    loading && "btn--loading",
     className,
   );
 
