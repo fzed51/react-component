@@ -32,13 +32,15 @@ export function Table<T = Record<string, unknown>>({
 }: TableProps<T>) {
   const gridTemplateColumns = columns.map((col) => col.width ?? "1fr").join(" ");
 
-  const [visibleCount, setVisibleCount] = useState(() => Math.min(pageSize, data.length));
+  const effectivePageSize = pageSize <= 0 ? data.length : pageSize;
+
+  const [visibleCount, setVisibleCount] = useState(() => Math.min(effectivePageSize, data.length));
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Réinitialise le compteur quand les données ou le pageSize changent
   useLayoutEffect(() => {
-    setVisibleCount(Math.min(pageSize, data.length));
-  }, [data, pageSize]);
+    setVisibleCount(Math.min(effectivePageSize, data.length));
+  }, [data, effectivePageSize]);
 
   // Callback ref sur le sentinel : branche / débranche l'observer à chaque montage/démontage
   const sentinelRef = useCallback(
@@ -51,7 +53,7 @@ export function Table<T = Record<string, unknown>>({
       const observer = new IntersectionObserver(
         (entries) => {
           if (entries[0].isIntersecting) {
-            setVisibleCount((c) => Math.min(c + pageSize, data.length));
+            setVisibleCount((c) => Math.min(c + effectivePageSize, data.length));
           }
         },
         { threshold: 0 },
@@ -61,7 +63,7 @@ export function Table<T = Record<string, unknown>>({
       observerRef.current = observer;
     },
     // data.length : recréer le callback quand la taille change afin d'avoir la bonne valeur dans la closure
-    [data.length, pageSize],
+    [data.length, effectivePageSize],
   );
 
   const visibleRows = data.slice(0, visibleCount);

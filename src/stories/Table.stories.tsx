@@ -201,7 +201,7 @@ function MeasuredTable({ progressive, startTime, onMeasured }: MeasuredTableProp
         data={bigUsers}
         striped
         caption={`1 000 lignes — ${progressive ? "progressif (lots de 20)" : "tout affiché d'un coup"}`}
-        pageSize={progressive ? 20 : bigUsers.length}
+        pageSize={progressive ? 20 : 0}
         getRowKey={(row) => row.id}
       />
     </div>
