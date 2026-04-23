@@ -1,0 +1,147 @@
+/* ============================================================
+   Table — CSS Grid
+   ============================================================ */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+}
+
+.table__caption {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+  text-align: left;
+}
+
+/* ── Grille principale ───────────────────────────────────── */
+
+.table {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  /* grid-template-columns est défini via l'attribut style inline */
+}
+
+.table__head,
+.table__body {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.table__row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+/* ── En-têtes ────────────────────────────────────────────── */
+
+.table__header-cell {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-subtle);
+  border-bottom: var(--border-width-medium) solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+/* ── Cellules ────────────────────────────────────────────── */
+
+.table__cell {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  border-bottom: var(--border-width) solid var(--color-border);
+  background-color: var(--color-bg-surface);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-content: center;
+}
+
+.table__body .table__row:last-child .table__cell {
+  border-bottom: none;
+}
+
+/* ── Alignement ──────────────────────────────────────────── */
+
+.table__cell--left,
+.table__header-cell--left {
+  text-align: left;
+}
+
+.table__cell--center,
+.table__header-cell--center {
+  text-align: center;
+}
+
+.table__cell--right,
+.table__header-cell--right {
+  text-align: right;
+}
+
+/* ── Hover sur les lignes du corps ───────────────────────── */
+
+.table__body .table__row:hover .table__cell {
+  background-color: var(--color-primary-light);
+  cursor: default;
+  transition: background-color var(--transition-fast);
+}
+
+/* ── Variante striped ────────────────────────────────────── */
+
+.table--striped .table__body .table__row:nth-child(even) .table__cell {
+  background-color: var(--color-bg-subtle);
+}
+
+.table--striped .table__body .table__row:nth-child(even):hover .table__cell {
+  background-color: var(--color-primary-light);
+}
+
+/* ── Variante bordered ───────────────────────────────────── */
+
+.table--bordered .table__header-cell + .table__header-cell,
+.table--bordered .table__cell + .table__cell {
+  border-left: var(--border-width) solid var(--color-border);
+}
+
+/* ── Taille sm ───────────────────────────────────────────── */
+
+.table--sm .table__header-cell,
+.table--sm .table__cell {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+}
+
+/* ── Taille lg ───────────────────────────────────────────── */
+
+.table--lg .table__header-cell,
+.table--lg .table__cell {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-md);
+}
+
+/* ── État vide ───────────────────────────────────────────── */
+
+.table__empty {
+  grid-column: 1 / -1;
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-bg-surface);
+}
