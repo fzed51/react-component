@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useCallback, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import "./Table.css";
 import type { TableColumn, TableProps } from "./types";
@@ -24,11 +24,48 @@ export function Table<T = Record<string, unknown>>({
   size = "md",
   caption,
   emptyLabel = "Aucune donnée",
+  loadingLabel = "Chargement…",
+  pageSize = 20,
   className = "",
   getRowKey,
   ...props
 }: TableProps<T>) {
   const gridTemplateColumns = columns.map((col) => col.width ?? "1fr").join(" ");
+
+  const [visibleCount, setVisibleCount] = useState(() => Math.min(pageSize, data.length));
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  // Réinitialise le compteur quand les données ou le pageSize changent
+  useLayoutEffect(() => {
+    setVisibleCount(Math.min(pageSize, data.length));
+  }, [data, pageSize]);
+
+  // Callback ref sur le sentinel : branche / débranche l'observer à chaque montage/démontage
+  const sentinelRef = useCallback(
+    (el: HTMLDivElement | null) => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setVisibleCount((c) => Math.min(c + pageSize, data.length));
+          }
+        },
+        { threshold: 0 },
+      );
+
+      observer.observe(el);
+      observerRef.current = observer;
+    },
+    // data.length : recréer le callback quand la taille change afin d'avoir la bonne valeur dans la closure
+    [data.length, pageSize],
+  );
+
+  const visibleRows = data.slice(0, visibleCount);
+  const hasMore = visibleCount < data.length;
 
   return (
     <div className={clsx("table-wrapper", className)} {...props}>
@@ -68,26 +105,40 @@ export function Table<T = Record<string, unknown>>({
               <span role="cell">{emptyLabel}</span>
             </div>
           ) : (
-            data.map((row, rowIndex) => (
-              <div
-                key={getRowKey ? getRowKey(row, rowIndex) : rowIndex}
-                className="table__row"
-                role="row"
-              >
-                {columns.map((col) => (
-                  <div
-                    key={col.key}
-                    className={clsx(
-                      "table__cell",
-                      col.align && `table__cell--${col.align}`,
-                    )}
-                    role="cell"
-                  >
-                    {getCellValue(row, col.accessor, rowIndex)}
-                  </div>
-                ))}
-              </div>
-            ))
+            <>
+              {visibleRows.map((row, rowIndex) => (
+                <div
+                  key={getRowKey ? getRowKey(row, rowIndex) : rowIndex}
+                  className="table__row"
+                  role="row"
+                >
+                  {columns.map((col) => (
+                    <div
+                      key={col.key}
+                      className={clsx(
+                        "table__cell",
+                        col.align && `table__cell--${col.align}`,
+                      )}
+                      role="cell"
+                    >
+                      {getCellValue(row, col.accessor, rowIndex)}
+                    </div>
+                  ))}
+                </div>
+              ))}
+
+              {hasMore && (
+                <div
+                  ref={sentinelRef}
+                  className="table__sentinel"
+                  aria-label={`${loadingLabel} ${visibleCount} / ${data.length}`}
+                  aria-busy="true"
+                >
+                  <span className="table__sentinel-spinner" aria-hidden="true" />
+                  {loadingLabel}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

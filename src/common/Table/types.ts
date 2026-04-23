@@ -31,6 +31,10 @@ export interface TableProps<T = Record<string, unknown>>
   caption?: string;
   /** Message affiché quand data est vide */
   emptyLabel?: string;
+  /** Texte de la ligne de chargement progressif */
+  loadingLabel?: string;
+  /** Nombre de lignes chargées par lot (affichage progressif) */
+  pageSize?: number;
   /** Fonction de clé unique par ligne */
   getRowKey?: (row: T, index: number) => string | number;
 }
