@@ -11,16 +11,66 @@ import {
   Paper,
   SubCard,
   SubText,
+  Table,
   Text,
   Titre1,
   Titre2,
   Titre3,
 } from "../common";
+import type { TableColumn } from "../common";
 import { InputTextField, SelectorField, TextareaField } from "../common/input";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
+
+  type Member = { name: string; role: string; status: "active" | "inactive" };
+
+  const members: Member[] = [
+    { name: "Alice Martin", role: "Admin", status: "active" },
+    { name: "Bob Dupont", role: "Éditeur", status: "active" },
+    { name: "Claire Leroy", role: "Lecteur", status: "inactive" },
+    { name: "David Moreau", role: "Éditeur", status: "active" },
+  ];
+
+  const membersColumns: TableColumn<Member>[] = [
+    { key: "name", header: "Nom", accessor: "name" },
+    { key: "role", header: "Rôle", accessor: "role", width: "120px" },
+    {
+      key: "status",
+      header: "Statut",
+      accessor: (row) => (
+        <Badge variant={row.status === "active" ? "success" : "default"}>
+          {row.status === "active" ? "Actif" : "Inactif"}
+        </Badge>
+      ),
+      width: "100px",
+      align: "center",
+    },
+  ];
+
+  type Invoice = { id: string; client: string; amount: number; date: string };
+
+  const invoices: Invoice[] = [
+    { id: "INV-001", client: "Acme Corp", amount: 1200, date: "2026-03-01" },
+    { id: "INV-002", client: "Globex", amount: 850, date: "2026-03-15" },
+    { id: "INV-003", client: "Initech", amount: 3400, date: "2026-04-01" },
+    { id: "INV-004", client: "Umbrella", amount: 670, date: "2026-04-10" },
+    { id: "INV-005", client: "Stark Ind.", amount: 9800, date: "2026-04-20" },
+  ];
+
+  const invoicesColumns: TableColumn<Invoice>[] = [
+    { key: "id", header: "N°", accessor: "id", width: "100px" },
+    { key: "client", header: "Client", accessor: "client" },
+    {
+      key: "amount",
+      header: "Montant",
+      accessor: (row) => `${row.amount.toLocaleString("fr-FR")} €`,
+      width: "120px",
+      align: "right",
+    },
+    { key: "date", header: "Date", accessor: "date", width: "120px", align: "center" },
+  ];
 
   return (
     <div className="min-h-screen bg-app py-10">
@@ -149,6 +199,32 @@ export function DesignSystem() {
               placeholder="Non modifiable"
               disabled
             />
+          </div>
+        </Card>
+
+        {/* Table */}
+        <Card>
+          <Titre2 className="mb-4">Tableaux</Titre2>
+          <div className="d-flex flex-col gap-6">
+            <div>
+              <Titre3 className="mb-2">Simple (striped)</Titre3>
+              <Table<Member>
+                columns={membersColumns}
+                data={members}
+                striped
+                getRowKey={(row) => row.name}
+              />
+            </div>
+            <div>
+              <Titre3 className="mb-2">Avec légende et bordures</Titre3>
+              <Table<Invoice>
+                columns={invoicesColumns}
+                data={invoices}
+                bordered
+                caption="Dernières factures"
+                getRowKey={(row) => row.id}
+              />
+            </div>
           </div>
         </Card>
 
