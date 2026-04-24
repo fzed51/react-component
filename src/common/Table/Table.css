@@ -124,7 +124,6 @@
 .table--sm .table__header-cell,
 .table--sm .table__cell {
   padding: var(--space-2) var(--space-3);
-  font-size: var(--font-size-xs);
 }
 
 /* ── Taille lg ───────────────────────────────────────────── */
@@ -132,7 +131,6 @@
 .table--lg .table__header-cell,
 .table--lg .table__cell {
   padding: var(--space-4) var(--space-5);
-  font-size: var(--font-size-md);
 }
 
 /* ── État vide ───────────────────────────────────────────── */
