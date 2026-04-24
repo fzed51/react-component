@@ -8,6 +8,7 @@
 4. [Composants](#4-composants)
    - [`<BaseStyle>`](#basestyle)
 5. [Champs composés (input/)](#5-champs-composés-input)
+6. [Tableau (`<Table>`)](#6-tableau-table)
 
 ---
 
@@ -926,4 +927,140 @@ export function ProfileForm() {
     </Card>
   );
 }
+```
+
+---
+
+## 6. Tableau (`<Table>`)
+
+Tableau générique basé sur **CSS Grid** avec affichage progressif (infinite scroll) intégré.
+
+### Import
+
+```tsx
+import { Table } from "@fzed51/react-component";
+import type { TableColumn } from "@fzed51/react-component";
+```
+
+### Utilisation de base
+
+```tsx
+type User = { id: number; name: string; role: string };
+
+const columns: TableColumn<User>[] = [
+  { key: "id",   header: "#",    accessor: "id",   width: "60px", align: "center" },
+  { key: "name", header: "Nom",  accessor: "name" },
+  { key: "role", header: "Rôle", accessor: "role", width: "120px" },
+];
+
+const data: User[] = [
+  { id: 1, name: "Alice", role: "Admin" },
+  { id: 2, name: "Bob",   role: "Éditeur" },
+];
+
+<Table<User> columns={columns} data={data} getRowKey={(row) => row.id} />
+```
+
+### Props de `<Table>`
+
+| Prop           | Type                                    | Défaut            | Description                                                                 |
+| -------------- | --------------------------------------- | ----------------- | --------------------------------------------------------------------------- |
+| `columns`      | `TableColumn<T>[]`                      | **requis**        | Définition des colonnes                                                     |
+| `data`         | `T[]`                                   | **requis**        | Tableau de données                                                          |
+| `striped`      | `boolean`                               | `false`           | Lignes alternées (zebrées)                                                  |
+| `bordered`     | `boolean`                               | `false`           | Bordures verticales entre colonnes                                          |
+| `size`         | `"sm" \| "md" \| "lg"`                 | `"md"`            | Densité des cellules                                                        |
+| `caption`      | `string`                                | —                 | Légende affichée au-dessus du tableau                                       |
+| `emptyLabel`   | `string`                                | `"Aucune donnée"` | Message affiché quand `data` est vide                                       |
+| `loadingLabel` | `string`                                | `"Chargement…"`   | Texte du sentinel d'affichage progressif                                    |
+| `pageSize`     | `number`                                | `20`              | Lignes rendues par lot. `<= 0` désactive l'affichage progressif (tout affiché) |
+| `getRowKey`    | `(row: T, index: number) => string \| number` | —           | Clé unique par ligne (recommandé)                                           |
+| `className`    | `string`                                | `""`              | Classes CSS additionnelles sur le wrapper                                   |
+| `...props`     | `HTMLAttributes<HTMLDivElement>`        | —                 | Attributs HTML natifs sur le wrapper                                        |
+
+### `TableColumn<T>`
+
+| Prop       | Type                                               | Description                                                    |
+| ---------- | -------------------------------------------------- | -------------------------------------------------------------- |
+| `key`      | `string`                                           | Identifiant unique de la colonne (**requis**)                  |
+| `header`   | `ReactNode`                                        | Contenu de l'en-tête (**requis**)                              |
+| `accessor` | `keyof T \| ((row: T, index: number) => ReactNode)` | Clé de la propriété **ou** fonction de rendu (**requis**)      |
+| `width`    | `string`                                           | Largeur CSS (`"1fr"`, `"120px"`, `"20%"`) — défaut : `"1fr"` |
+| `align`    | `"left" \| "center" \| "right"`                   | Alignement du contenu — défaut : `"left"`                     |
+
+### Exemples
+
+#### Tableau simple
+
+```tsx
+<Table<User>
+  columns={columns}
+  data={data}
+  striped
+  getRowKey={(row) => row.id}
+/>
+```
+
+#### Avec légende et bordures
+
+```tsx
+<Table<User>
+  columns={columns}
+  data={data}
+  bordered
+  caption="Liste des utilisateurs"
+  size="sm"
+  getRowKey={(row) => row.id}
+/>
+```
+
+#### Rendu personnalisé dans une colonne
+
+```tsx
+const columns: TableColumn<User>[] = [
+  { key: "name", header: "Nom", accessor: "name" },
+  {
+    key: "status",
+    header: "Statut",
+    accessor: (row) => (
+      <Badge variant={row.active ? "success" : "default"}>
+        {row.active ? "Actif" : "Inactif"}
+      </Badge>
+    ),
+    width: "100px",
+    align: "center",
+  },
+];
+```
+
+#### Tableau vide
+
+```tsx
+<Table
+  columns={columns}
+  data={[]}
+  emptyLabel="Aucun résultat pour cette recherche."
+/>
+```
+
+### Affichage progressif (infinite scroll)
+
+Par défaut (`pageSize={20}`), le tableau rend les 20 premières lignes puis affiche un **sentinel** de chargement en bas. Dès que le sentinel devient visible dans le viewport (via `IntersectionObserver`), 20 lignes supplémentaires sont rendues — et ainsi de suite jusqu'à épuisement des données.
+
+Le sentinel disparaît automatiquement quand toutes les lignes sont affichées.
+
+```tsx
+// Affichage progressif dans un conteneur scrollable
+<div style={{ height: "400px", overflow: "auto" }}>
+  <Table<User>
+    columns={columns}
+    data={largeDataset}   // ex: 1 000 entrées
+    pageSize={25}
+    loadingLabel="Chargement des lignes suivantes…"
+    getRowKey={(row) => row.id}
+  />
+</div>
+
+// Désactiver l'affichage progressif (tout afficher d'un coup)
+<Table columns={columns} data={data} pageSize={0} />
 ```
