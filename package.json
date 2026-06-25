@@ -34,8 +34,10 @@
     "publish:maj": "yarn ver:maj && yarn git-push && yarn build && yarn _publish",
     "publish:min": "yarn ver:min && yarn git-push && yarn build && yarn _publish",
     "publish:pat": "yarn ver:pat && yarn git-push && yarn build && yarn _publish",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "clsx": "^2.1.1"
@@ -46,19 +48,21 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
-    "@storybook/addon-essentials": "^8.6.18",
-    "@storybook/addon-interactions": "^8.6.18",
-    "@storybook/react-vite": "^8",
-    "@storybook/test": "^8.6.18",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4",
+    "@vitest/coverage-v8": "^3.0.0",
     "copyfiles": "^2.4.1",
+    "jsdom": "^25.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "storybook": "^8",
     "typescript": "^5.9.3",
-    "vite": "^6"
+    "vite": "^6",
+    "vitest": "^3.0.0"
   },
   "packageManager": "yarn@4.9.2"
 }

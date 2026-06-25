@@ -1,13 +1,9 @@
-import { useCallback, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
+import { type ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
 import "./Table.css";
 import type { TableColumn, TableProps } from "./types";
 
-function getCellValue<T>(
-  row: T,
-  accessor: TableColumn<T>["accessor"],
-  index: number,
-): ReactNode {
+function getCellValue<T>(row: T, accessor: TableColumn<T>["accessor"], index: number): ReactNode {
   if (typeof accessor === "function") {
     return accessor(row, index);
   }
@@ -117,10 +113,7 @@ export function Table<T = Record<string, unknown>>({
                   {columns.map((col) => (
                     <div
                       key={col.key}
-                      className={clsx(
-                        "table__cell",
-                        col.align && `table__cell--${col.align}`,
-                      )}
+                      className={clsx("table__cell", col.align && `table__cell--${col.align}`)}
                       role="cell"
                     >
                       {getCellValue(row, col.accessor, rowIndex)}

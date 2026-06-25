@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { TableColumn } from "../common";
 import {
   Badge,
   Button,
@@ -17,7 +18,6 @@ import {
   Titre2,
   Titre3,
 } from "../common";
-import type { TableColumn } from "../common";
 import { InputTextField, SelectorField, TextareaField } from "../common/input";
 
 export function DesignSystem() {
