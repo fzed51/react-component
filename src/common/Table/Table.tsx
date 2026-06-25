@@ -126,6 +126,7 @@ export function Table<T = Record<string, unknown>>({
                 <div
                   ref={sentinelRef}
                   className="table__sentinel"
+                  role="status"
                   aria-label={`${loadingLabel} ${visibleCount} / ${data.length}`}
                   aria-busy="true"
                 >
