@@ -1,4 +1,4 @@
-import type { ReactNode, SelectHTMLAttributes } from "react";
+import type { ReactNode, Ref, SelectHTMLAttributes } from "react";
 
 export type SelectorSize = "sm" | "md" | "lg";
 export type SelectorState = "default" | "error" | "success";
@@ -11,4 +11,6 @@ export interface SelectorProps extends Omit<SelectHTMLAttributes<HTMLSelectEleme
   size?: SelectorSize;
   /** Texte de l'option par défaut non sélectionnable */
   placeholder?: string;
+  /** Référence vers l'élément select natif */
+  ref?: Ref<HTMLSelectElement>;
 }

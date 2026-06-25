@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { forwardRef } from "react";
 import "./Selector.css";
 import type { SelectorProps, SelectorSize, SelectorState } from "./types";
 
@@ -17,7 +16,7 @@ const stateClass: Record<SelectorState, string> = {
 
 /**
  * Liste déroulante du design system.
- * Compatible `forwardRef` pour l'intégration avec les bibliothèques de formulaire.
+ * Accepte une `ref` (prop standard React 19) pour l'intégration avec les bibliothèques de formulaire.
  *
  * @example
  * <Selector placeholder="Choisir un pays">
@@ -25,24 +24,28 @@ const stateClass: Record<SelectorState, string> = {
  *   <option value="be">Belgique</option>
  * </Selector>
  */
-export const Selector = forwardRef<HTMLSelectElement, SelectorProps>(
-  ({ children, state = "default", size = "md", placeholder, className = "", ...props }, ref) => {
-    const classes = clsx("selector", sizeClass[size], stateClass[state], className);
+export function Selector({
+  children,
+  state = "default",
+  size = "md",
+  placeholder,
+  className = "",
+  ref,
+  ...props
+}: SelectorProps) {
+  const classes = clsx("selector", sizeClass[size], stateClass[state], className);
 
-    return (
-      <div className="selector-wrapper">
-        <select ref={ref} className={classes} {...props}>
-          {placeholder && (
-            <option value="" disabled>
-              {placeholder}
-            </option>
-          )}
-          {children}
-        </select>
-        <span className="selector-wrapper__chevron" aria-hidden="true" />
-      </div>
-    );
-  },
-);
-
-Selector.displayName = "Selector";
+  return (
+    <div className="selector-wrapper">
+      <select ref={ref} className={classes} {...props}>
+        {placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
+        {children}
+      </select>
+      <span className="selector-wrapper__chevron" aria-hidden="true" />
+    </div>
+  );
+}

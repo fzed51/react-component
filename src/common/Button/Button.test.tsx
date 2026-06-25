@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { createRef } from "react";
 import { describe, expect, it } from "vitest";
 import { Button } from "./Button";
 
@@ -40,5 +41,12 @@ describe("Button", () => {
   it("transmet les attributs natifs (type, onClick)", () => {
     render(<Button type="submit">OK</Button>);
     expect(screen.getByRole("button")).toHaveAttribute("type", "submit");
+  });
+
+  it("transmet la ref vers l'élément button natif", () => {
+    const ref = createRef<HTMLButtonElement>();
+    render(<Button ref={ref}>Réf</Button>);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    expect(ref.current).toBe(screen.getByRole("button", { name: "Réf" }));
   });
 });

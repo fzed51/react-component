@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { forwardRef } from "react";
 import "./InputText.css";
 import type { InputTextProps, InputTextSize, InputTextState } from "./types";
 
@@ -17,14 +16,16 @@ const stateClass: Record<InputTextState, string> = {
 
 /**
  * Champ de saisie texte du design system.
- * Compatible `forwardRef` pour l'intégration avec les bibliothèques de formulaire.
+ * Accepte une `ref` (prop standard React 19) pour l'intégration avec les bibliothèques de formulaire.
  */
-export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
-  ({ state = "default", size = "md", className = "", ...props }, ref) => {
-    const classes = clsx("input-text", sizeClass[size], stateClass[state], className);
+export function InputText({
+  state = "default",
+  size = "md",
+  className = "",
+  ref,
+  ...props
+}: InputTextProps) {
+  const classes = clsx("input-text", sizeClass[size], stateClass[state], className);
 
-    return <input ref={ref} className={classes} {...props} />;
-  },
-);
-
-InputText.displayName = "InputText";
+  return <input ref={ref} className={classes} {...props} />;
+}

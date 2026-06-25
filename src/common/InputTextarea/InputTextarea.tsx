@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { forwardRef } from "react";
 import "./InputTextarea.css";
 import type { InputTextareaProps, InputTextareaSize, InputTextareaState } from "./types";
 
@@ -17,14 +16,16 @@ const stateClass: Record<InputTextareaState, string> = {
 
 /**
  * Champ de saisie multiligne du design system.
- * Compatible `forwardRef` pour l'intégration avec les bibliothèques de formulaire.
+ * Accepte une `ref` (prop standard React 19) pour l'intégration avec les bibliothèques de formulaire.
  */
-export const InputTextarea = forwardRef<HTMLTextAreaElement, InputTextareaProps>(
-  ({ state = "default", size = "md", className = "", ...props }, ref) => {
-    const classes = clsx("input-textarea", sizeClass[size], stateClass[state], className);
+export function InputTextarea({
+  state = "default",
+  size = "md",
+  className = "",
+  ref,
+  ...props
+}: InputTextareaProps) {
+  const classes = clsx("input-textarea", sizeClass[size], stateClass[state], className);
 
-    return <textarea ref={ref} className={classes} {...props} />;
-  },
-);
-
-InputTextarea.displayName = "InputTextarea";
+  return <textarea ref={ref} className={classes} {...props} />;
+}

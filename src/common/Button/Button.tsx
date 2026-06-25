@@ -27,6 +27,7 @@ export function Button({
   loading = false,
   disabled,
   className = "",
+  ref,
   ...props
 }: ButtonProps) {
   const classes = clsx(
@@ -39,7 +40,13 @@ export function Button({
   );
 
   return (
-    <button className={classes} disabled={disabled || loading} aria-busy={loading} {...props}>
+    <button
+      ref={ref}
+      className={classes}
+      disabled={disabled || loading}
+      aria-busy={loading}
+      {...props}
+    >
       {loading && <span className="btn__spinner" aria-hidden="true" />}
       {children}
     </button>
