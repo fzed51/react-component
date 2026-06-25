@@ -22,13 +22,21 @@ export function InputTextField({
   ...props
 }: InputTextFieldProps) {
   const fieldState = error ? "error" : state;
+  const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
 
   return (
-    <FormGroup error={error} hint={hint}>
+    <FormGroup error={error} hint={hint} fieldId={id}>
       <Label htmlFor={id} required={required}>
         {label}
       </Label>
-      <InputText ref={ref} id={id} state={fieldState} required={required} {...props} />
+      <InputText
+        ref={ref}
+        id={id}
+        state={fieldState}
+        required={required}
+        aria-describedby={describedBy}
+        {...props}
+      />
     </FormGroup>
   );
 }

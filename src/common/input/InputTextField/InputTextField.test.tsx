@@ -16,8 +16,19 @@ describe("InputTextField", () => {
     expect(screen.getByLabelText("Email")).toHaveClass("input-text--error");
   });
 
-  it("affiche le hint en l'absence d'erreur", () => {
+  it("relie le champ au message d'erreur via aria-invalid + aria-describedby", () => {
+    render(<InputTextField id="email" label="Email" error="Email invalide" />);
+    const input = screen.getByLabelText("Email");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAttribute("aria-describedby", "email-error");
+    expect(screen.getByRole("alert")).toHaveAttribute("id", "email-error");
+  });
+
+  it("affiche le hint en l'absence d'erreur et le relie via aria-describedby", () => {
     render(<InputTextField id="email" label="Email" hint="Votre adresse pro" />);
-    expect(screen.getByText("Votre adresse pro")).toBeInTheDocument();
+    const input = screen.getByLabelText("Email");
+    expect(screen.getByText("Votre adresse pro")).toHaveAttribute("id", "email-hint");
+    expect(input).toHaveAttribute("aria-describedby", "email-hint");
+    expect(input).not.toHaveAttribute("aria-invalid");
   });
 });

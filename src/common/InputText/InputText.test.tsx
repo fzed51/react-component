@@ -17,6 +17,14 @@ describe("InputText", () => {
     expect(input.className).not.toMatch(/input-text--(error|success)/);
   });
 
+  it("expose aria-invalid en état erreur, pas autrement", () => {
+    const { rerender } = render(<InputText state="error" placeholder="Email" />);
+    expect(screen.getByPlaceholderText("Email")).toHaveAttribute("aria-invalid", "true");
+
+    rerender(<InputText placeholder="Email" />);
+    expect(screen.getByPlaceholderText("Email")).not.toHaveAttribute("aria-invalid");
+  });
+
   it("transmet la ref vers l'élément input natif", () => {
     const ref = createRef<HTMLInputElement>();
     render(<InputText ref={ref} placeholder="Réf" />);

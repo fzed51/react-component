@@ -13,18 +13,29 @@ import type { FormGroupProps } from "./types";
  *   <InputText id="email" type="email" placeholder="vous@exemple.com" />
  * </FormGroup>
  */
-export function FormGroup({ children, error, hint, className = "", ...props }: FormGroupProps) {
+export function FormGroup({
+  children,
+  error,
+  hint,
+  fieldId,
+  className = "",
+  ...props
+}: FormGroupProps) {
   const classes = clsx("form-group", error && "form-group--error", className);
 
   return (
     <div className={classes} {...props}>
       {children}
       {error && (
-        <p className="form-group__error" role="alert">
+        <p className="form-group__error" role="alert" id={fieldId ? `${fieldId}-error` : undefined}>
           {error}
         </p>
       )}
-      {!error && hint && <p className="form-group__hint">{hint}</p>}
+      {!error && hint && (
+        <p className="form-group__hint" id={fieldId ? `${fieldId}-hint` : undefined}>
+          {hint}
+        </p>
+      )}
     </div>
   );
 }

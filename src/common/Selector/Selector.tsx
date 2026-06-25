@@ -37,7 +37,12 @@ export function Selector({
 
   return (
     <div className="selector-wrapper">
-      <select ref={ref} className={classes} {...props}>
+      <select
+        ref={ref}
+        className={classes}
+        aria-invalid={state === "error" || undefined}
+        {...props}
+      >
         {placeholder && (
           <option value="" disabled>
             {placeholder}

@@ -27,5 +27,7 @@ export function InputText({
 }: InputTextProps) {
   const classes = clsx("input-text", sizeClass[size], stateClass[state], className);
 
-  return <input ref={ref} className={classes} {...props} />;
+  return (
+    <input ref={ref} className={classes} aria-invalid={state === "error" || undefined} {...props} />
+  );
 }

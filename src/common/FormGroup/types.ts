@@ -6,4 +6,9 @@ export interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
   error?: string;
   /** Message d'aide affiché sous le champ */
   hint?: string;
+  /**
+   * Identifiant du champ associé. Utilisé pour générer les `id` des messages
+   * (`{fieldId}-error` / `{fieldId}-hint`) à relier via `aria-describedby`.
+   */
+  fieldId?: string;
 }

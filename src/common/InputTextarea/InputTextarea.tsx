@@ -27,5 +27,12 @@ export function InputTextarea({
 }: InputTextareaProps) {
   const classes = clsx("input-textarea", sizeClass[size], stateClass[state], className);
 
-  return <textarea ref={ref} className={classes} {...props} />;
+  return (
+    <textarea
+      ref={ref}
+      className={classes}
+      aria-invalid={state === "error" || undefined}
+      {...props}
+    />
+  );
 }

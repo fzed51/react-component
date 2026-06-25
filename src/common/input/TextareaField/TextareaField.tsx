@@ -21,13 +21,21 @@ export function TextareaField({
   ...props
 }: TextareaFieldProps) {
   const fieldState = error ? "error" : state;
+  const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
 
   return (
-    <FormGroup error={error} hint={hint}>
+    <FormGroup error={error} hint={hint} fieldId={id}>
       <Label htmlFor={id} required={required}>
         {label}
       </Label>
-      <InputTextarea ref={ref} id={id} state={fieldState} required={required} {...props} />
+      <InputTextarea
+        ref={ref}
+        id={id}
+        state={fieldState}
+        required={required}
+        aria-describedby={describedBy}
+        {...props}
+      />
     </FormGroup>
   );
 }
