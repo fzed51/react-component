@@ -4,6 +4,7 @@ import {
   Badge,
   Button,
   Card,
+  Checkbox,
   Divider,
   FormGroup,
   InputGroup,
@@ -18,11 +19,13 @@ import {
   Titre2,
   Titre3,
 } from "../common";
-import { InputTextField, SelectorField, TextareaField } from "../common/input";
+import { CheckboxField, InputTextField, SelectorField, TextareaField } from "../common/input";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
+  const [cgu, setCgu] = useState(false);
+  const [notifications, setNotifications] = useState(true);
 
   type Member = { name: string; role: string; status: "active" | "inactive" };
 
@@ -193,12 +196,72 @@ export function DesignSystem() {
               </InputGroup>
             </FormGroup>
 
+            <CheckboxField
+              id="cgu"
+              label="J'accepte les conditions générales"
+              required
+              checked={cgu}
+              onChange={(e) => setCgu(e.target.checked)}
+              error={!cgu ? "Vous devez accepter les conditions." : undefined}
+            />
+
+            <CheckboxField
+              id="notif"
+              variant="switch"
+              label="Recevoir les notifications par e-mail"
+              hint="Vous pourrez le modifier plus tard."
+              checked={notifications}
+              onChange={(e) => setNotifications(e.target.checked)}
+            />
+
             <InputTextField
               id="disabled"
               label="Champ désactivé"
               placeholder="Non modifiable"
               disabled
             />
+          </div>
+        </Card>
+
+        {/* Cases à cocher & interrupteurs */}
+        <Card>
+          <Titre2 className="mb-4">Cases à cocher & interrupteurs</Titre2>
+
+          <div className="d-flex flex-col gap-4">
+            <div className="d-flex flex-wrap gap-6 items-center">
+              <Checkbox label="Case à cocher" defaultChecked />
+              <Checkbox variant="switch" label="Interrupteur" defaultChecked />
+            </div>
+
+            <Divider label="Tailles" />
+
+            <div className="d-flex flex-wrap gap-6 items-center">
+              <Checkbox size="sm" label="Small" defaultChecked />
+              <Checkbox size="md" label="Medium" defaultChecked />
+              <Checkbox size="lg" label="Large" defaultChecked />
+            </div>
+            <div className="d-flex flex-wrap gap-6 items-center">
+              <Checkbox variant="switch" size="sm" label="Small" defaultChecked />
+              <Checkbox variant="switch" size="md" label="Medium" defaultChecked />
+              <Checkbox variant="switch" size="lg" label="Large" defaultChecked />
+            </div>
+
+            <Divider label="États" />
+
+            <div className="d-flex flex-wrap gap-6 items-center">
+              <Checkbox label="Erreur" state="error" />
+              <Checkbox label="Erreur cochée" state="error" defaultChecked />
+              <Checkbox label="Succès cochée" state="success" defaultChecked />
+              <Checkbox label="Désactivé" disabled />
+              <Checkbox label="Désactivé coché" disabled defaultChecked />
+            </div>
+            <div className="d-flex flex-wrap gap-6 items-center">
+              <Checkbox variant="switch" label="Erreur" state="error" />
+              <Checkbox variant="switch" label="Erreur cochée" state="error" defaultChecked />
+              <Checkbox variant="switch" label="Succès cochée" state="success" defaultChecked />
+              <Checkbox variant="switch" label="Désactivé" disabled />
+              <Checkbox variant="switch" label="Désactivé coché" disabled defaultChecked />
+            </div>
           </div>
         </Card>
 

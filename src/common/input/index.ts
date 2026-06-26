@@ -1,3 +1,5 @@
+export type { CheckboxFieldProps } from "./CheckboxField";
+export { CheckboxField } from "./CheckboxField";
 export type { InputTextFieldProps } from "./InputTextField";
 export { InputTextField } from "./InputTextField";
 export type { SelectorFieldProps } from "./SelectorField";

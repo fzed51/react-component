@@ -721,6 +721,30 @@ Liste déroulante. Compatible `forwardRef`.
 
 ---
 
+#### `<Checkbox>`
+
+Case à cocher déclinée en deux formes via `variant` : `"checkbox"` (case à cocher) ou `"switch"` (interrupteur). Le `<label>` enveloppe le contrôle : cliquer le libellé bascule l'état. Compatible `forwardRef`.
+
+```tsx
+<Checkbox label="J'accepte les conditions" />
+<Checkbox variant="switch" label="Activer les notifications" defaultChecked />
+<Checkbox size="lg" state="error" label="Obligatoire" />
+```
+
+> L'état `error` / `success` reste visible **même une fois la case cochée** (remplissage rouge / vert), afin que le signal de validation ne soit jamais masqué par la couleur « coché ». C'est au consommateur de retirer `state` quand l'erreur est résolue.
+
+| Prop        | Type                                                          | Défaut       | Description                              |
+| ----------- | ------------------------------------------------------------- | ------------ | ---------------------------------------- |
+| `variant`   | `"checkbox" \| "switch"`                                      | `"checkbox"` | Forme du contrôle                        |
+| `state`     | `"default" \| "error" \| "success"`                           | `"default"`  | Variante visuelle d'état                 |
+| `size`      | `"sm" \| "md" \| "lg"`                                        | `"md"`       | Taille du contrôle et du libellé         |
+| `label`     | `ReactNode`                                                   | —            | Libellé affiché à côté du contrôle       |
+| `className` | `string`                                                      | `""`         | Classes CSS additionnelles               |
+| `ref`       | `Ref<HTMLInputElement>`                                       | —            | Référence sur l'`<input>`                |
+| `...props`  | `InputHTMLAttributes<HTMLInputElement>` *(sauf `size`, `type`)* | —          | Attributs `<input>` natifs (`checked`, `disabled`, `onChange`…) |
+
+---
+
 #### `<Button>`
 
 Bouton avec variantes de style et de taille.
@@ -872,6 +896,30 @@ Ils sont disponibles depuis `@fzed51/react-component`.
 | `required` | `boolean`                                     | —           | Affiche `*` sur le label, passe `required` natif |
 | `ref`      | `Ref<HTMLTextAreaElement>`                    | —           | Référence sur le `<textarea>`                    |
 | `...props` | `TextareaHTMLAttributes<HTMLTextAreaElement>` | —           | Attributs `<textarea>` natifs                    |
+
+---
+
+#### `<CheckboxField>`
+
+`FormGroup > Checkbox + message`. Contrairement aux autres champs, le label est **adjacent** au contrôle (intégré au `Checkbox`) ; le champ relie directement le message d'erreur / d'aide via `aria-describedby`. Hérite de toutes les props de `<Checkbox>` (`variant`, `size`, `state`…).
+
+```tsx
+<CheckboxField id="cgu" label="J'accepte les conditions" required error="Champ obligatoire" />
+<CheckboxField id="notif" variant="switch" label="Notifications" hint="Modifiable plus tard." />
+```
+
+| Prop       | Type                                                              | Défaut       | Description                                      |
+| ---------- | ---------------------------------------------------------------- | ------------ | ------------------------------------------------ |
+| `id`       | `string`                                                         | **requis**   | Lie le label et l'`<input>`                      |
+| `label`    | `ReactNode`                                                      | **requis**   | Libellé affiché à côté du contrôle               |
+| `variant`  | `"checkbox" \| "switch"`                                         | `"checkbox"` | Forme du contrôle                                |
+| `error`    | `string`                                                         | —            | Message d'erreur — force l'état `"error"`        |
+| `hint`     | `string`                                                         | —            | Message d'aide (masqué si `error` présent)       |
+| `state`    | `"default" \| "error" \| "success"`                              | `"default"`  | État visuel (ignoré si `error` est fourni)       |
+| `size`     | `"sm" \| "md" \| "lg"`                                           | `"md"`       | Taille du contrôle                               |
+| `required` | `boolean`                                                        | —            | Affiche `*` sur le label, passe `required` natif |
+| `ref`      | `Ref<HTMLInputElement>`                                          | —            | Référence sur l'`<input>`                        |
+| `...props` | `InputHTMLAttributes<HTMLInputElement>` *(sauf `size`, `type`)*  | —            | Attributs `<input>` natifs                       |
 
 ---
 

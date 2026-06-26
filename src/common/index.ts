@@ -3,8 +3,10 @@ export { Badge } from "./Badge";
 export { Button } from "./Button";
 /* Mise en page */
 export { Card } from "./Card";
-export { Divider } from "./Divider";
 /* Formulaires */
+export type { CheckboxProps, CheckboxSize, CheckboxState, CheckboxVariant } from "./Checkbox";
+export { Checkbox } from "./Checkbox";
+export { Divider } from "./Divider";
 export { FormGroup } from "./FormGroup";
 export { InputGroup } from "./InputGroup";
 export { InputText } from "./InputText";
