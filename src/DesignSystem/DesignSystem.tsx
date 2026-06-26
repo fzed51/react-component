@@ -21,6 +21,7 @@ import {
 } from "../common";
 import { CheckboxField, InputTextField, SelectorField, TextareaField } from "../common/input";
 import { Demo } from "./Demo";
+import { PackageInfo } from "./PackageInfo";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
@@ -86,6 +87,9 @@ export function DesignSystem() {
         </div>
 
         <Divider />
+
+        {/* À propos du package */}
+        <PackageInfo />
 
         {/* Typographie */}
         <Card>
