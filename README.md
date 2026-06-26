@@ -1,3 +1,21 @@
+# @fzed51/react-component
+
+Bibliothèque de composants React (design system) publiée sur npm, distribuée en dual **ESM / CJS** avec types TypeScript. Elle fournit un jeu de composants primitifs (boutons, champs de formulaire, cartes, tableau…), des design tokens en variables CSS et des classes utilitaires composables. **React 19 requis**, une seule dépendance runtime (`clsx`).
+
+```bash
+npm install @fzed51/react-component
+```
+
+## 🎨 Playground
+
+Une vitrine interactive présente tous les composants, leurs variantes et leur code d'exemple :
+
+**👉 [fzed51.github.io/react-component](https://fzed51.github.io/react-component/)**
+
+Le playground est déployé automatiquement sur GitHub Pages à chaque push sur `main`. En local, lancez-le avec `yarn dev`.
+
+---
+
 # Design System — Documentation
 
 ## Table des matières
