@@ -22,6 +22,7 @@ import {
 import { CheckboxField, InputTextField, SelectorField, TextareaField } from "../common/input";
 import { Demo } from "./Demo";
 import { PackageInfo } from "./PackageInfo";
+import { Tokens } from "./Tokens";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
@@ -494,6 +495,11 @@ export function DesignSystem() {
             </div>
           </Demo>
         </Card>
+
+        <Divider label="Fondations" />
+
+        {/* Design tokens */}
+        <Tokens />
       </Paper>
     </div>
   );
