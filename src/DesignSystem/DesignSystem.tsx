@@ -20,6 +20,7 @@ import {
   Titre3,
 } from "../common";
 import { CheckboxField, InputTextField, SelectorField, TextareaField } from "../common/input";
+import { Demo } from "./Demo";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
@@ -90,238 +91,404 @@ export function DesignSystem() {
         <Card>
           <Titre2 className="mb-4">Typographie</Titre2>
 
-          <div className="d-flex flex-col gap-3">
-            <Titre1>Titre 1 — h1</Titre1>
-            <Titre2>Titre 2 — h2</Titre2>
-            <Titre3>Titre 3 — h3</Titre3>
-            <Text>Texte courant (primary) — Lorem ipsum dolor sit amet.</Text>
-            <Text variant="secondary">Texte secondaire — Ut enim ad minim veniam.</Text>
-            <Text variant="tertiary" size="sm">
-              Texte tertiaire small — Duis aute irure dolor.
-            </Text>
-            <SubText>
-              Sous-texte / légende — utilisé pour complémenter un titre ou un champ.
-            </SubText>
-            <SubText variant="error">Sous-texte d'erreur</SubText>
-            <SubText variant="success">Sous-texte de succès</SubText>
-          </div>
+          <Demo
+            code={`<Titre1>Titre 1 — h1</Titre1>
+<Titre2>Titre 2 — h2</Titre2>
+<Titre3>Titre 3 — h3</Titre3>
+<Text>Texte courant (primary) — Lorem ipsum dolor sit amet.</Text>
+<Text variant="secondary">Texte secondaire — Ut enim ad minim veniam.</Text>
+<Text variant="tertiary" size="sm">Texte tertiaire small — Duis aute irure dolor.</Text>
+<SubText>Sous-texte / légende — utilisé pour complémenter un titre ou un champ.</SubText>
+<SubText variant="error">Sous-texte d'erreur</SubText>
+<SubText variant="success">Sous-texte de succès</SubText>`}
+          >
+            <div className="d-flex flex-col gap-3">
+              <Titre1>Titre 1 — h1</Titre1>
+              <Titre2>Titre 2 — h2</Titre2>
+              <Titre3>Titre 3 — h3</Titre3>
+              <Text>Texte courant (primary) — Lorem ipsum dolor sit amet.</Text>
+              <Text variant="secondary">Texte secondaire — Ut enim ad minim veniam.</Text>
+              <Text variant="tertiary" size="sm">
+                Texte tertiaire small — Duis aute irure dolor.
+              </Text>
+              <SubText>
+                Sous-texte / légende — utilisé pour complémenter un titre ou un champ.
+              </SubText>
+              <SubText variant="error">Sous-texte d'erreur</SubText>
+              <SubText variant="success">Sous-texte de succès</SubText>
+            </div>
+          </Demo>
         </Card>
 
         {/* Badges */}
         <Card>
           <Titre2 className="mb-4">Badges</Titre2>
-          <div className="d-flex flex-wrap gap-2">
-            <Badge>Default</Badge>
-            <Badge variant="primary">Primary</Badge>
-            <Badge variant="success">Success</Badge>
-            <Badge variant="warning">Warning</Badge>
-            <Badge variant="error">Error</Badge>
-            <Badge variant="info">Info</Badge>
-            <Badge size="sm" variant="primary">
-              Small
-            </Badge>
-          </div>
+          <Demo
+            code={`<Badge>Default</Badge>
+<Badge variant="primary">Primary</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="info">Info</Badge>
+<Badge size="sm" variant="primary">Small</Badge>`}
+          >
+            <div className="d-flex flex-wrap gap-2">
+              <Badge>Default</Badge>
+              <Badge variant="primary">Primary</Badge>
+              <Badge variant="success">Success</Badge>
+              <Badge variant="warning">Warning</Badge>
+              <Badge variant="error">Error</Badge>
+              <Badge variant="info">Info</Badge>
+              <Badge size="sm" variant="primary">
+                Small
+              </Badge>
+            </div>
+          </Demo>
         </Card>
 
         {/* Cadres */}
         <Card>
           <Titre2 className="mb-4">Cadres</Titre2>
-          <div className="d-flex flex-col gap-3">
-            <SubCard>
-              <Text size="sm">SubCard — default (fond subtle)</Text>
-            </SubCard>
-            <SubCard variant="subtle">
-              <Text size="sm">SubCard — subtle (fond muted)</Text>
-            </SubCard>
-            <SubCard variant="muted">
-              <Text size="sm">SubCard — muted (fond app)</Text>
-            </SubCard>
-          </div>
+          <Demo
+            code={`<SubCard>
+  <Text size="sm">SubCard — default (fond subtle)</Text>
+</SubCard>
+<SubCard variant="subtle">
+  <Text size="sm">SubCard — subtle (fond muted)</Text>
+</SubCard>
+<SubCard variant="muted">
+  <Text size="sm">SubCard — muted (fond app)</Text>
+</SubCard>`}
+          >
+            <div className="d-flex flex-col gap-3">
+              <SubCard>
+                <Text size="sm">SubCard — default (fond subtle)</Text>
+              </SubCard>
+              <SubCard variant="subtle">
+                <Text size="sm">SubCard — subtle (fond muted)</Text>
+              </SubCard>
+              <SubCard variant="muted">
+                <Text size="sm">SubCard — muted (fond app)</Text>
+              </SubCard>
+            </div>
+          </Demo>
         </Card>
 
         {/* Séparateurs */}
         <Card>
           <Titre2 className="mb-4">Séparateurs</Titre2>
-          <Divider />
-          <Text size="sm" className="my-3">
-            Divider simple
-          </Text>
-          <Divider label="ou" />
-          <Text size="sm" className="mt-3">
-            Divider avec label
-          </Text>
+          <Demo
+            code={`<Divider />
+<Divider label="ou" />`}
+          >
+            <Divider />
+            <Text size="sm" className="my-3">
+              Divider simple
+            </Text>
+            <Divider label="ou" />
+            <Text size="sm" className="mt-3">
+              Divider avec label
+            </Text>
+          </Demo>
         </Card>
 
         {/* Formulaires */}
         <Card>
           <Titre2 className="mb-4">Formulaire</Titre2>
-          <div className="d-flex flex-col gap-4">
-            <InputTextField
-              id="name"
-              label="Nom complet"
-              placeholder="Jean Dupont"
-              required
-              hint="Votre prénom et nom de famille."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+          <Demo
+            code={`<InputTextField
+  id="name"
+  label="Nom complet"
+  placeholder="Jean Dupont"
+  required
+  hint="Votre prénom et nom de famille."
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
 
-            <SelectorField
-              id="country"
-              label="Pays"
-              required
-              placeholder="Choisir un pays"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              state={!country ? "error" : "success"}
-              error={!country ? "Veuillez sélectionner un pays." : undefined}
-            >
-              <option value="fr">France</option>
-              <option value="be">Belgique</option>
-              <option value="ch">Suisse</option>
-            </SelectorField>
+<SelectorField
+  id="country"
+  label="Pays"
+  required
+  placeholder="Choisir un pays"
+  value={country}
+  onChange={(e) => setCountry(e.target.value)}
+  state={!country ? "error" : "success"}
+  error={!country ? "Veuillez sélectionner un pays." : undefined}
+>
+  <option value="fr">France</option>
+  <option value="be">Belgique</option>
+  <option value="ch">Suisse</option>
+</SelectorField>
 
-            <TextareaField
-              id="bio"
-              label="Biographie"
-              placeholder="Parlez-nous de vous…"
-              hint="Max 500 caractères."
-              rows={4}
-            />
+<TextareaField
+  id="bio"
+  label="Biographie"
+  placeholder="Parlez-nous de vous…"
+  hint="Max 500 caractères."
+  rows={4}
+/>
 
-            <FormGroup>
-              <Label htmlFor="search">Recherche</Label>
-              <InputGroup prefix="🔍">
-                <InputText id="search" placeholder="Rechercher…" />
-              </InputGroup>
-            </FormGroup>
+<FormGroup>
+  <Label htmlFor="search">Recherche</Label>
+  <InputGroup prefix="🔍">
+    <InputText id="search" placeholder="Rechercher…" />
+  </InputGroup>
+</FormGroup>
 
-            <CheckboxField
-              id="cgu"
-              label="J'accepte les conditions générales"
-              required
-              checked={cgu}
-              onChange={(e) => setCgu(e.target.checked)}
-              error={!cgu ? "Vous devez accepter les conditions." : undefined}
-            />
+<CheckboxField
+  id="cgu"
+  label="J'accepte les conditions générales"
+  required
+  checked={cgu}
+  onChange={(e) => setCgu(e.target.checked)}
+  error={!cgu ? "Vous devez accepter les conditions." : undefined}
+/>
 
-            <CheckboxField
-              id="notif"
-              variant="switch"
-              label="Recevoir les notifications par e-mail"
-              hint="Vous pourrez le modifier plus tard."
-              checked={notifications}
-              onChange={(e) => setNotifications(e.target.checked)}
-            />
+<CheckboxField
+  id="notif"
+  variant="switch"
+  label="Recevoir les notifications par e-mail"
+  hint="Vous pourrez le modifier plus tard."
+  checked={notifications}
+  onChange={(e) => setNotifications(e.target.checked)}
+/>
 
-            <InputTextField
-              id="disabled"
-              label="Champ désactivé"
-              placeholder="Non modifiable"
-              disabled
-            />
-          </div>
+<InputTextField id="disabled" label="Champ désactivé" placeholder="Non modifiable" disabled />`}
+          >
+            <div className="d-flex flex-col gap-4">
+              <InputTextField
+                id="name"
+                label="Nom complet"
+                placeholder="Jean Dupont"
+                required
+                hint="Votre prénom et nom de famille."
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+
+              <SelectorField
+                id="country"
+                label="Pays"
+                required
+                placeholder="Choisir un pays"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                state={!country ? "error" : "success"}
+                error={!country ? "Veuillez sélectionner un pays." : undefined}
+              >
+                <option value="fr">France</option>
+                <option value="be">Belgique</option>
+                <option value="ch">Suisse</option>
+              </SelectorField>
+
+              <TextareaField
+                id="bio"
+                label="Biographie"
+                placeholder="Parlez-nous de vous…"
+                hint="Max 500 caractères."
+                rows={4}
+              />
+
+              <FormGroup>
+                <Label htmlFor="search">Recherche</Label>
+                <InputGroup prefix="🔍">
+                  <InputText id="search" placeholder="Rechercher…" />
+                </InputGroup>
+              </FormGroup>
+
+              <CheckboxField
+                id="cgu"
+                label="J'accepte les conditions générales"
+                required
+                checked={cgu}
+                onChange={(e) => setCgu(e.target.checked)}
+                error={!cgu ? "Vous devez accepter les conditions." : undefined}
+              />
+
+              <CheckboxField
+                id="notif"
+                variant="switch"
+                label="Recevoir les notifications par e-mail"
+                hint="Vous pourrez le modifier plus tard."
+                checked={notifications}
+                onChange={(e) => setNotifications(e.target.checked)}
+              />
+
+              <InputTextField
+                id="disabled"
+                label="Champ désactivé"
+                placeholder="Non modifiable"
+                disabled
+              />
+            </div>
+          </Demo>
         </Card>
 
         {/* Cases à cocher & interrupteurs */}
         <Card>
           <Titre2 className="mb-4">Cases à cocher & interrupteurs</Titre2>
 
-          <div className="d-flex flex-col gap-4">
-            <div className="d-flex flex-wrap gap-6 items-center">
-              <Checkbox label="Case à cocher" defaultChecked />
-              <Checkbox variant="switch" label="Interrupteur" defaultChecked />
-            </div>
+          <Demo
+            code={`{/* Deux formes */}
+<Checkbox label="Case à cocher" defaultChecked />
+<Checkbox variant="switch" label="Interrupteur" defaultChecked />
 
-            <Divider label="Tailles" />
+{/* Tailles (sm | md | lg) — idem avec variant="switch" */}
+<Checkbox size="sm" label="Small" defaultChecked />
+<Checkbox size="md" label="Medium" defaultChecked />
+<Checkbox size="lg" label="Large" defaultChecked />
 
-            <div className="d-flex flex-wrap gap-6 items-center">
-              <Checkbox size="sm" label="Small" defaultChecked />
-              <Checkbox size="md" label="Medium" defaultChecked />
-              <Checkbox size="lg" label="Large" defaultChecked />
-            </div>
-            <div className="d-flex flex-wrap gap-6 items-center">
-              <Checkbox variant="switch" size="sm" label="Small" defaultChecked />
-              <Checkbox variant="switch" size="md" label="Medium" defaultChecked />
-              <Checkbox variant="switch" size="lg" label="Large" defaultChecked />
-            </div>
+{/* États — idem avec variant="switch" */}
+<Checkbox label="Erreur" state="error" />
+<Checkbox label="Erreur cochée" state="error" defaultChecked />
+<Checkbox label="Succès cochée" state="success" defaultChecked />
+<Checkbox label="Désactivé" disabled />
+<Checkbox label="Désactivé coché" disabled defaultChecked />`}
+          >
+            <div className="d-flex flex-col gap-4">
+              <div className="d-flex flex-wrap gap-6 items-center">
+                <Checkbox label="Case à cocher" defaultChecked />
+                <Checkbox variant="switch" label="Interrupteur" defaultChecked />
+              </div>
 
-            <Divider label="États" />
+              <Divider label="Tailles" />
 
-            <div className="d-flex flex-wrap gap-6 items-center">
-              <Checkbox label="Erreur" state="error" />
-              <Checkbox label="Erreur cochée" state="error" defaultChecked />
-              <Checkbox label="Succès cochée" state="success" defaultChecked />
-              <Checkbox label="Désactivé" disabled />
-              <Checkbox label="Désactivé coché" disabled defaultChecked />
+              <div className="d-flex flex-wrap gap-6 items-center">
+                <Checkbox size="sm" label="Small" defaultChecked />
+                <Checkbox size="md" label="Medium" defaultChecked />
+                <Checkbox size="lg" label="Large" defaultChecked />
+              </div>
+              <div className="d-flex flex-wrap gap-6 items-center">
+                <Checkbox variant="switch" size="sm" label="Small" defaultChecked />
+                <Checkbox variant="switch" size="md" label="Medium" defaultChecked />
+                <Checkbox variant="switch" size="lg" label="Large" defaultChecked />
+              </div>
+
+              <Divider label="États" />
+
+              <div className="d-flex flex-wrap gap-6 items-center">
+                <Checkbox label="Erreur" state="error" />
+                <Checkbox label="Erreur cochée" state="error" defaultChecked />
+                <Checkbox label="Succès cochée" state="success" defaultChecked />
+                <Checkbox label="Désactivé" disabled />
+                <Checkbox label="Désactivé coché" disabled defaultChecked />
+              </div>
+              <div className="d-flex flex-wrap gap-6 items-center">
+                <Checkbox variant="switch" label="Erreur" state="error" />
+                <Checkbox variant="switch" label="Erreur cochée" state="error" defaultChecked />
+                <Checkbox variant="switch" label="Succès cochée" state="success" defaultChecked />
+                <Checkbox variant="switch" label="Désactivé" disabled />
+                <Checkbox variant="switch" label="Désactivé coché" disabled defaultChecked />
+              </div>
             </div>
-            <div className="d-flex flex-wrap gap-6 items-center">
-              <Checkbox variant="switch" label="Erreur" state="error" />
-              <Checkbox variant="switch" label="Erreur cochée" state="error" defaultChecked />
-              <Checkbox variant="switch" label="Succès cochée" state="success" defaultChecked />
-              <Checkbox variant="switch" label="Désactivé" disabled />
-              <Checkbox variant="switch" label="Désactivé coché" disabled defaultChecked />
-            </div>
-          </div>
+          </Demo>
         </Card>
 
         {/* Table */}
         <Card>
           <Titre2 className="mb-4">Tableaux</Titre2>
-          <div className="d-flex flex-col gap-6">
-            <div>
-              <Titre3 className="mb-2">Simple (striped)</Titre3>
-              <Table<Member>
-                columns={membersColumns}
-                data={members}
-                striped
-                getRowKey={(row) => row.name}
-              />
+          <Demo
+            code={`const columns: TableColumn<Member>[] = [
+  { key: "name", header: "Nom", accessor: "name" },
+  { key: "role", header: "Rôle", accessor: "role", width: "120px" },
+  {
+    key: "status",
+    header: "Statut",
+    accessor: (row) => <Badge>{row.status}</Badge>,
+    align: "center",
+  },
+];
+
+<Table<Member>
+  columns={columns}
+  data={members}
+  striped
+  getRowKey={(row) => row.name}
+/>
+
+<Table<Invoice>
+  columns={invoicesColumns}
+  data={invoices}
+  bordered
+  caption="Dernières factures"
+  getRowKey={(row) => row.id}
+/>`}
+          >
+            <div className="d-flex flex-col gap-6">
+              <div>
+                <Titre3 className="mb-2">Simple (striped)</Titre3>
+                <Table<Member>
+                  columns={membersColumns}
+                  data={members}
+                  striped
+                  getRowKey={(row) => row.name}
+                />
+              </div>
+              <div>
+                <Titre3 className="mb-2">Avec légende et bordures</Titre3>
+                <Table<Invoice>
+                  columns={invoicesColumns}
+                  data={invoices}
+                  bordered
+                  caption="Dernières factures"
+                  getRowKey={(row) => row.id}
+                />
+              </div>
             </div>
-            <div>
-              <Titre3 className="mb-2">Avec légende et bordures</Titre3>
-              <Table<Invoice>
-                columns={invoicesColumns}
-                data={invoices}
-                bordered
-                caption="Dernières factures"
-                getRowKey={(row) => row.id}
-              />
-            </div>
-          </div>
+          </Demo>
         </Card>
 
         {/* Boutons */}
         <Card>
           <Titre2 className="mb-4">Boutons</Titre2>
 
-          <div className="d-flex flex-col gap-4">
-            <div className="d-flex flex-wrap gap-2 items-center">
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="danger">Danger</Button>
+          <Demo
+            code={`{/* Variantes */}
+<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="danger">Danger</Button>
+
+{/* Tailles */}
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+
+{/* États */}
+<Button loading>Chargement…</Button>
+<Button disabled>Désactivé</Button>
+<Button variant="primary" fullWidth>Pleine largeur</Button>`}
+          >
+            <div className="d-flex flex-col gap-4">
+              <div className="d-flex flex-wrap gap-2 items-center">
+                <Button variant="primary">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="danger">Danger</Button>
+              </div>
+
+              <Divider label="Tailles" />
+
+              <div className="d-flex flex-wrap gap-2 items-center">
+                <Button size="sm">Small</Button>
+                <Button size="md">Medium</Button>
+                <Button size="lg">Large</Button>
+              </div>
+
+              <Divider label="États" />
+
+              <div className="d-flex flex-wrap gap-2 items-center">
+                <Button loading>Chargement…</Button>
+                <Button disabled>Désactivé</Button>
+                <Button variant="primary" fullWidth>
+                  Pleine largeur
+                </Button>
+              </div>
             </div>
-
-            <Divider label="Tailles" />
-
-            <div className="d-flex flex-wrap gap-2 items-center">
-              <Button size="sm">Small</Button>
-              <Button size="md">Medium</Button>
-              <Button size="lg">Large</Button>
-            </div>
-
-            <Divider label="États" />
-
-            <div className="d-flex flex-wrap gap-2 items-center">
-              <Button loading>Chargement…</Button>
-              <Button disabled>Désactivé</Button>
-              <Button variant="primary" fullWidth>
-                Pleine largeur
-              </Button>
-            </div>
-          </div>
+          </Demo>
         </Card>
       </Paper>
     </div>

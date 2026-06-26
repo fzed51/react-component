@@ -61,8 +61,12 @@ s'accompagner systématiquement de :
 1. **Mise à jour de la documentation** (`README.md`) — refléter la nouvelle API / le nouvel usage.
 2. **Mise à jour du playground** (`src/DesignSystem/DesignSystem.tsx`) — y exposer le composant
    ou la variante modifiée, afin que la vitrine (`yarn dev` / GitHub Pages) reste à jour.
+3. **Synchronisation du code affiché** — chaque exemple du playground est encapsulé dans
+   `<Demo code={…}>`, où la prop `code` est un snippet **maintenu à la main** (il n'est pas extrait
+   automatiquement du rendu). Dès qu'on modifie les éléments affichés d'une section, mettre à jour
+   la chaîne `code` correspondante pour qu'elle reflète exactement ce qui est rendu.
 
-Ne pas considérer une modification de composant comme terminée tant que ces deux points ne sont pas faits.
+Ne pas considérer une modification de composant comme terminée tant que ces trois points ne sont pas faits.
 
 ## Conventions de code
 
