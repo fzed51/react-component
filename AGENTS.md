@@ -53,6 +53,17 @@ Composant/
 
 Respecter cette régularité pour tout nouveau composant, et l'exporter depuis `src/common/index.ts`.
 
+## ⚠️ Règles lors d'une modification de composant
+
+Toute création ou modification de composant (nouvelle prop, variante, comportement, API…) **doit**
+s'accompagner systématiquement de :
+
+1. **Mise à jour de la documentation** (`README.md`) — refléter la nouvelle API / le nouvel usage.
+2. **Mise à jour du playground** (`src/DesignSystem/DesignSystem.tsx`) — y exposer le composant
+   ou la variante modifiée, afin que la vitrine (`yarn dev` / GitHub Pages) reste à jour.
+
+Ne pas considérer une modification de composant comme terminée tant que ces deux points ne sont pas faits.
+
 ## Conventions de code
 
 - **className** : composer avec `clsx`, toujours fusionner le `className` reçu en dernier.
