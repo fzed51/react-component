@@ -763,6 +763,51 @@ Case à cocher déclinée en deux formes via `variant` : `"checkbox"` (case à c
 
 ---
 
+#### `<Radio>` & `<RadioGroup>`
+
+Choix **unique et exclusif** dans un ensemble. `Radio` est le contrôle atomique (pastille ronde) ; en pratique on utilise `RadioGroup`, qui pilote l'exclusivité (un `name` partagé), la sélection et la disposition. Pour un champ complet avec libellé de groupe et message, voir [`<RadioGroupField>`](#radiogroupfield).
+
+```tsx
+const planOptions = [
+  { value: "free", label: "Gratuit" },
+  { value: "pro", label: "Pro" },
+  { value: "enterprise", label: "Entreprise" },
+];
+
+{/* Non contrôlé */}
+<RadioGroup name="plan" options={planOptions} defaultValue="pro" />
+
+{/* Contrôlé */}
+<RadioGroup name="plan" options={planOptions} value={plan} onChange={setPlan} />
+
+{/* Dispositions */}
+<RadioGroup name="plan" layout="inline" options={planOptions} />
+<RadioGroup name="plan" layout="grid" columns={3} options={planOptions} />
+```
+
+La prop `layout` propose trois dispositions : `"stack"` (colonne, défaut), `"inline"` (ligne avec passage automatique à la ligne) et `"grid"` (grille de `columns` colonnes, `2` par défaut). L'état `error` / `success` est propagé au groupe (`aria-invalid`) et à chaque option ; il reste visible même une fois l'option sélectionnée.
+
+`RadioGroup` :
+
+| Prop           | Type                                                       | Défaut      | Description                                          |
+| -------------- | ---------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `name`         | `string`                                                   | —           | Nom partagé garantissant l'exclusivité (obligatoire) |
+| `options`      | `RadioOption[]`                                            | —           | Options `{ value, label, disabled? }`                |
+| `value`        | `string`                                                   | —           | Valeur sélectionnée (mode contrôlé)                  |
+| `defaultValue` | `string`                                                   | —           | Valeur initiale (mode non contrôlé)                  |
+| `onChange`     | `(value: string, event) => void`                           | —           | Appelé avec la valeur de l'option choisie            |
+| `layout`       | `"stack" \| "inline" \| "grid"`                            | `"stack"`   | Disposition des options                              |
+| `columns`      | `number`                                                   | `2`         | Nombre de colonnes (avec `layout="grid"`)            |
+| `size`         | `"sm" \| "md" \| "lg"`                                     | `"md"`      | Taille des contrôles                                 |
+| `state`        | `"default" \| "error" \| "success"`                        | `"default"` | État visuel appliqué à tout le groupe                |
+| `disabled`     | `boolean`                                                  | `false`     | Désactive tout le groupe                             |
+| `className`    | `string`                                                   | `""`        | Classes CSS additionnelles                           |
+| `ref`          | `Ref<HTMLDivElement>`                                      | —           | Référence sur le conteneur du groupe                 |
+
+`Radio` (atomique) accepte `size`, `state`, `label`, `ref` et tous les attributs `<input>` natifs (sauf `size`, `type`).
+
+---
+
 #### `<Button>`
 
 Bouton avec variantes de style et de taille.
@@ -938,6 +983,36 @@ Ils sont disponibles depuis `@fzed51/react-component`.
 | `required` | `boolean`                                                        | —            | Affiche `*` sur le label, passe `required` natif |
 | `ref`      | `Ref<HTMLInputElement>`                                          | —            | Référence sur l'`<input>`                        |
 | `...props` | `InputHTMLAttributes<HTMLInputElement>` *(sauf `size`, `type`)*  | —            | Attributs `<input>` natifs                       |
+
+---
+
+#### `<RadioGroupField>`
+
+`FormGroup > légende + RadioGroup + message`. Champ de choix unique : l'erreur porte sur le **groupe entier** (et non sur une option). La légende est reliée au groupe via `aria-labelledby` et le message via `aria-describedby`. Hérite de toutes les props de [`<RadioGroup>`](#radio--radiogroup) (`options`, `value`, `defaultValue`, `onChange`, `layout`, `columns`, `size`…). Le `name` partagé prend par défaut la valeur de `id`.
+
+```tsx
+const planOptions = [
+  { value: "free", label: "Gratuit" },
+  { value: "pro", label: "Pro" },
+];
+
+<RadioGroupField id="plan" label="Formule" layout="inline" defaultValue="pro" options={planOptions} />
+<RadioGroupField id="plan" label="Formule" required error="Choix obligatoire" options={planOptions} />
+```
+
+| Prop       | Type                                | Défaut      | Description                                            |
+| ---------- | ----------------------------------- | ----------- | ----------------------------------------------------- |
+| `id`       | `string`                            | **requis**  | Lie la légende et les messages au groupe              |
+| `label`    | `ReactNode`                         | **requis**  | Libellé du groupe (légende)                           |
+| `name`     | `string`                            | `id`        | Nom partagé des boutons radio                         |
+| `options`  | `RadioOption[]`                     | **requis**  | Options `{ value, label, disabled? }`                 |
+| `error`    | `string`                            | —           | Message d'erreur — force l'état `"error"` du groupe   |
+| `hint`     | `string`                            | —           | Message d'aide (masqué si `error` présent)            |
+| `state`    | `"default" \| "error" \| "success"` | `"default"` | État visuel (ignoré si `error` est fourni)            |
+| `layout`   | `"stack" \| "inline" \| "grid"`     | `"stack"`   | Disposition des options                               |
+| `required` | `boolean`                           | —           | Affiche `*` sur la légende                            |
+| `ref`      | `Ref<HTMLDivElement>`               | —           | Référence sur le conteneur du groupe                  |
+| `...props` | props de `<RadioGroup>` *(sauf `name`)* | —       | `value`, `defaultValue`, `onChange`, `columns`, `size`… |
 
 ---
 

@@ -1,0 +1,41 @@
+/* Conteneur du groupe — dispositions pilotées par la prop `layout` */
+.radio-group {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* stack : empilement vertical (défaut) */
+.radio-group--stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* inline : alignement horizontal avec passage à la ligne automatique */
+.radio-group--inline {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+/* grid : grille à `columns` colonnes (défaut 2 si non précisé) */
+.radio-group--grid {
+  display: grid;
+  grid-template-columns: repeat(var(--radio-group-cols, 2), minmax(0, 1fr));
+  gap: var(--space-2) var(--space-4);
+}
+
+/* Légende du groupe (rendue par RadioGroupField) — alignée sur `.form-label` */
+.radio-group__legend {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.radio-group__required {
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+}

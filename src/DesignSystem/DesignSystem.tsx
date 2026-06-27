@@ -11,6 +11,7 @@ import {
   InputText,
   Label,
   Paper,
+  RadioGroup,
   SubCard,
   SubText,
   Table,
@@ -19,7 +20,13 @@ import {
   Titre2,
   Titre3,
 } from "../common";
-import { CheckboxField, InputTextField, SelectorField, TextareaField } from "../common/input";
+import {
+  CheckboxField,
+  InputTextField,
+  RadioGroupField,
+  SelectorField,
+  TextareaField,
+} from "../common/input";
 import { Demo } from "./Demo";
 import { PackageInfo } from "./PackageInfo";
 import { Tokens } from "./Tokens";
@@ -29,6 +36,13 @@ export function DesignSystem() {
   const [country, setCountry] = useState("");
   const [cgu, setCgu] = useState(false);
   const [notifications, setNotifications] = useState(true);
+  const [plan, setPlan] = useState("pro");
+
+  const planOptions = [
+    { value: "free", label: "Gratuit" },
+    { value: "pro", label: "Pro" },
+    { value: "enterprise", label: "Entreprise" },
+  ];
 
   type Member = { name: string; role: string; status: "active" | "inactive" };
 
@@ -386,6 +400,104 @@ export function DesignSystem() {
                 <Checkbox variant="switch" label="Désactivé" disabled />
                 <Checkbox variant="switch" label="Désactivé coché" disabled defaultChecked />
               </div>
+            </div>
+          </Demo>
+        </Card>
+
+        {/* Boutons radio */}
+        <Card>
+          <Titre2 className="mb-4">Boutons radio</Titre2>
+
+          <Demo
+            code={`const planOptions = [
+  { value: "free", label: "Gratuit" },
+  { value: "pro", label: "Pro" },
+  { value: "enterprise", label: "Entreprise" },
+];
+
+{/* Dispositions (stack | inline | grid) */}
+<RadioGroup name="plan-stack" options={planOptions} defaultValue="pro" />
+<RadioGroup name="plan-inline" layout="inline" options={planOptions} defaultValue="pro" />
+<RadioGroup name="plan-grid" layout="grid" columns={3} options={planOptions} defaultValue="pro" />
+
+{/* Tailles (sm | md | lg) */}
+<RadioGroup name="plan-sm" layout="inline" size="sm" options={planOptions} defaultValue="pro" />
+<RadioGroup name="plan-lg" layout="inline" size="lg" options={planOptions} defaultValue="pro" />
+
+{/* Contrôlé + champ composé avec erreur */}
+const [plan, setPlan] = useState("pro");
+<RadioGroup name="plan-ctrl" layout="inline" options={planOptions} value={plan} onChange={setPlan} />
+
+<RadioGroupField
+  id="plan-field"
+  label="Formule"
+  required
+  layout="inline"
+  options={planOptions}
+  error="Veuillez choisir une formule"
+/>`}
+          >
+            <div className="d-flex flex-col gap-4">
+              <Divider label="Dispositions" />
+              <div className="d-flex flex-col gap-2">
+                <SubText>stack (défaut)</SubText>
+                <RadioGroup name="plan-stack" options={planOptions} defaultValue="pro" />
+              </div>
+              <div className="d-flex flex-col gap-2">
+                <SubText>inline</SubText>
+                <RadioGroup
+                  name="plan-inline"
+                  layout="inline"
+                  options={planOptions}
+                  defaultValue="pro"
+                />
+              </div>
+              <div className="d-flex flex-col gap-2">
+                <SubText>grid (columns=3)</SubText>
+                <RadioGroup
+                  name="plan-grid"
+                  layout="grid"
+                  columns={3}
+                  options={planOptions}
+                  defaultValue="pro"
+                />
+              </div>
+
+              <Divider label="Tailles" />
+              <RadioGroup
+                name="plan-sm"
+                layout="inline"
+                size="sm"
+                options={planOptions}
+                defaultValue="pro"
+              />
+              <RadioGroup
+                name="plan-lg"
+                layout="inline"
+                size="lg"
+                options={planOptions}
+                defaultValue="pro"
+              />
+
+              <Divider label="Contrôlé & champ composé" />
+              <div className="d-flex flex-col gap-2">
+                <RadioGroup
+                  name="plan-ctrl"
+                  layout="inline"
+                  options={planOptions}
+                  value={plan}
+                  onChange={setPlan}
+                />
+                <SubText>Sélection : {plan}</SubText>
+              </div>
+              <RadioGroupField
+                id="plan-field"
+                label="Formule"
+                required
+                layout="inline"
+                options={planOptions}
+                error="Veuillez choisir une formule"
+              />
             </div>
           </Demo>
         </Card>

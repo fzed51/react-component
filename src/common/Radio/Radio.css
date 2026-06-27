@@ -1,0 +1,114 @@
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+/* Input natif masqué visuellement mais conservé pour l'accessibilité et le clavier */
+.radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pastille ronde : différenciateur visuel du choix exclusif (vs case carrée) */
+.radio__visual {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  width: var(--radio-size);
+  height: var(--radio-size);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-surface);
+  border: var(--border-width) solid var(--color-border);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Point central : apparaît par mise à l'échelle quand l'option est sélectionnée */
+.radio__visual::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-inverse);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform var(--transition-fast);
+}
+
+.radio__label {
+  user-select: none;
+}
+
+/* ── Tailles ──────────────────────────────────────────────── */
+.radio--sm {
+  font-size: var(--font-size-sm);
+  --radio-size: calc(var(--space-unit) * 4); /* ≈ 16px */
+}
+.radio--md {
+  font-size: var(--font-size-md);
+  --radio-size: calc(var(--space-unit) * 5); /* ≈ 20px */
+}
+.radio--lg {
+  font-size: var(--font-size-lg);
+  --radio-size: calc(var(--space-unit) * 6); /* ≈ 24px */
+}
+
+/* ── État sélectionné ─────────────────────────────────────── */
+.radio__input:checked + .radio__visual {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.radio__input:checked + .radio__visual::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Interactions ─────────────────────────────────────────── */
+.radio:hover .radio__input:not(:disabled) + .radio__visual {
+  border-color: var(--color-border-strong);
+}
+
+.radio__input:focus-visible + .radio__visual {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* ── États error / success ────────────────────────────────── */
+.radio--error .radio__visual {
+  border-color: var(--color-error);
+}
+.radio--success .radio__visual {
+  border-color: var(--color-success);
+}
+
+/* La couleur de validation prime sur le remplissage « sélectionné » :
+   le signal (rouge / vert) reste visible même une fois l'option choisie. */
+.radio--error .radio__input:checked + .radio__visual {
+  background-color: var(--color-error);
+  border-color: var(--color-error);
+}
+.radio--success .radio__input:checked + .radio__visual {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+/* ── Désactivé ────────────────────────────────────────────── */
+.radio:has(.radio__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
