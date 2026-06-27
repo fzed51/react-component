@@ -2,6 +2,8 @@ export type { CheckboxFieldProps } from "./CheckboxField";
 export { CheckboxField } from "./CheckboxField";
 export type { InputTextFieldProps } from "./InputTextField";
 export { InputTextField } from "./InputTextField";
+export type { PasswordFieldProps } from "./PasswordField";
+export { PasswordField } from "./PasswordField";
 export type { RadioGroupFieldProps } from "./RadioGroupField";
 export { RadioGroupField } from "./RadioGroupField";
 export type { SelectorFieldProps } from "./SelectorField";

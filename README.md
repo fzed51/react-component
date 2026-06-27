@@ -699,15 +699,25 @@ Entoure un `InputText` avec un préfixe (icône, texte) et/ou un suffixe.
 <InputGroup suffix={<span>€</span>}>
   <InputText type="number" placeholder="Montant" />
 </InputGroup>
+
+{/* Suffixe cliquable (bouton) */}
+<InputGroup suffix={<button type="button">👁</button>} interactiveSuffix>
+  <InputText type="password" />
+</InputGroup>
 ```
 
-| Prop        | Type                             | Défaut | Description                       |
-| ----------- | -------------------------------- | ------ | --------------------------------- |
-| `children`  | `ReactNode`                      | —      | Contrôle de saisie (`InputText`…) |
-| `prefix`    | `ReactNode`                      | —      | Élément avant l'input             |
-| `suffix`    | `ReactNode`                      | —      | Élément après l'input             |
-| `className` | `string`                         | `""`   | Classes CSS additionnelles        |
-| `...props`  | `HTMLAttributes<HTMLDivElement>` | —      | Attributs HTML natifs             |
+Par défaut, le `prefix` et le `suffix` sont **décoratifs** (`aria-hidden`, non cliquables). Activer
+`interactiveSuffix` pour y placer un contrôle réellement interactif (ex. bouton afficher/masquer un
+mot de passe).
+
+| Prop               | Type                             | Défaut  | Description                          |
+| ------------------ | -------------------------------- | ------- | ------------------------------------ |
+| `children`         | `ReactNode`                      | —       | Contrôle de saisie (`InputText`…)    |
+| `prefix`           | `ReactNode`                      | —       | Élément avant l'input                |
+| `suffix`           | `ReactNode`                      | —       | Élément après l'input                |
+| `interactiveSuffix`| `boolean`                        | `false` | Rend le suffixe cliquable (bouton…)  |
+| `className`        | `string`                         | `""`    | Classes CSS additionnelles           |
+| `...props`         | `HTMLAttributes<HTMLDivElement>` | —       | Attributs HTML natifs                |
 
 ---
 
@@ -904,6 +914,34 @@ Ils sont disponibles depuis `@fzed51/react-component`.
 | `required` | `boolean`                                               | —           | Affiche `*` sur le label, passe `required` natif |
 | `ref`      | `Ref<HTMLInputElement>`                                 | —           | Référence sur l'`<input>`                        |
 | `...props` | `InputHTMLAttributes<HTMLInputElement>` *(sauf `size`)* | —           | Tous les attributs `<input>` natifs              |
+
+---
+
+#### `<PasswordField>`
+
+`FormGroup > Label + InputGroup(InputText + bouton afficher/masquer)`. Champ mot de passe avec bouton
+œil intégré qui bascule le `type` entre `password` et `text`. Reprend toute l'API de
+`<InputTextField>` (sauf `type`, forcé), plus deux libellés accessibles personnalisables.
+
+```tsx
+<PasswordField id="pwd" label="Mot de passe" autoComplete="current-password" required />
+<PasswordField id="new" label="Nouveau mot de passe" autoComplete="new-password" hint="8 caractères minimum" />
+<PasswordField id="pwd2" label="Mot de passe" error="Mot de passe incorrect" />
+```
+
+| Prop                | Type                                                    | Défaut                         | Description                                      |
+| ------------------- | ------------------------------------------------------- | ------------------------------ | ------------------------------------------------ |
+| `id`                | `string`                                                | **requis**                     | Lie le `<label>` et l'`<input>`                  |
+| `label`             | `string`                                                | **requis**                     | Texte du label                                   |
+| `error`             | `string`                                                | —                              | Message d'erreur — force l'état `"error"`        |
+| `hint`              | `string`                                                | —                              | Message d'aide (masqué si `error` présent)       |
+| `state`             | `"default" \| "error" \| "success"`                     | `"default"`                    | État visuel (ignoré si `error` est fourni)       |
+| `size`              | `"sm" \| "md" \| "lg"`                                  | `"md"`                         | Taille du champ                                  |
+| `required`          | `boolean`                                               | —                              | Affiche `*` sur le label, passe `required` natif |
+| `showPasswordLabel` | `string`                                                | `"Afficher le mot de passe"`   | Libellé a11y du bouton quand le champ est masqué |
+| `hidePasswordLabel` | `string`                                                | `"Masquer le mot de passe"`    | Libellé a11y du bouton quand le champ est visible|
+| `ref`               | `Ref<HTMLInputElement>`                                 | —                              | Référence sur l'`<input>`                        |
+| `...props`          | `InputHTMLAttributes<HTMLInputElement>` *(sauf `size`, `type`)* | —                      | Tous les attributs `<input>` natifs              |
 
 ---
 

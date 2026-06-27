@@ -35,3 +35,9 @@
 .input-group--has-suffix .input-text {
   padding-right: calc(var(--space-3) * 2 + var(--size-icon-md));
 }
+
+/* Suffixe interactif : réactive le clic et neutralise le décalage décoratif */
+.input-group__suffix--interactive {
+  pointer-events: auto;
+  color: inherit;
+}

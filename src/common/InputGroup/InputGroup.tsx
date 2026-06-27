@@ -16,6 +16,7 @@ export function InputGroup({
   children,
   prefix,
   suffix,
+  interactiveSuffix = false,
   className = "",
   ...props
 }: InputGroupProps) {
@@ -35,7 +36,13 @@ export function InputGroup({
       )}
       {children}
       {suffix && (
-        <span className="input-group__suffix" aria-hidden="true">
+        <span
+          className={clsx(
+            "input-group__suffix",
+            interactiveSuffix && "input-group__suffix--interactive",
+          )}
+          aria-hidden={interactiveSuffix ? undefined : "true"}
+        >
           {suffix}
         </span>
       )}

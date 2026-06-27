@@ -23,6 +23,7 @@ import {
 import {
   CheckboxField,
   InputTextField,
+  PasswordField,
   RadioGroupField,
   SelectorField,
   TextareaField,
@@ -33,6 +34,7 @@ import { Tokens } from "./Tokens";
 
 export function DesignSystem() {
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
   const [cgu, setCgu] = useState(false);
   const [notifications, setNotifications] = useState(true);
@@ -225,6 +227,16 @@ export function DesignSystem() {
   onChange={(e) => setName(e.target.value)}
 />
 
+<PasswordField
+  id="password"
+  label="Mot de passe"
+  autoComplete="current-password"
+  required
+  hint="8 caractères minimum."
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
+
 <SelectorField
   id="country"
   label="Pays"
@@ -284,6 +296,16 @@ export function DesignSystem() {
                 hint="Votre prénom et nom de famille."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+              />
+
+              <PasswordField
+                id="password"
+                label="Mot de passe"
+                autoComplete="current-password"
+                required
+                hint="8 caractères minimum."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <SelectorField
