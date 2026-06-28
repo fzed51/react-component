@@ -6,6 +6,15 @@ Bibliothèque de composants React (design system) publiée sur npm, distribuée 
 npm install @fzed51/react-component
 ```
 
+## 🎯 Pourquoi ce package ?
+
+Le besoin : une bibliothèque UI **simple à mettre en œuvre**, sans configuration lourde ni courbe d'apprentissage. Elle vise deux contextes :
+
+- **Les applications simples** — démarrer vite avec un jeu de composants cohérents et des design tokens prêts à l'emploi, sans assembler un design system complet.
+- **Les POC (preuves de concept)** — prototyper une idée rapidement avec une UI propre, le temps de valider le concept avant d'investir davantage.
+
+L'objectif n'est pas de couvrir tous les cas d'usage d'un design system d'entreprise, mais d'offrir le minimum efficace pour aller vite, avec une seule dépendance runtime (`clsx`).
+
 ## 🎨 Playground
 
 Une vitrine interactive présente tous les composants, leurs variantes et leur code d'exemple :
